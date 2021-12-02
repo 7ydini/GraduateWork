@@ -6,5 +6,4 @@ import ru.ds.GraduateWork.model.entity.product.ProductBuy;
 
 @Repository
 public interface ProductBuyRepository extends JpaRepository<ProductBuy, Long> {
-
 }

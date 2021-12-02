@@ -9,6 +9,8 @@ import ru.ds.GraduateWork.repository.product.ProductBuyRepository;
 import ru.ds.GraduateWork.repository.product.ProductSaleRepository;
 import ru.ds.GraduateWork.service.ProductService;
 
+import java.util.List;
+
 @Data
 @Service
 @AllArgsConstructor
@@ -19,21 +21,31 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductBuy addProductBuy(ProductBuy productBuy) {
-        return null;
+        return productBuyRepository.saveAndFlush(productBuy);
     }
 
     @Override
-    public ProductBuy getProductBuy(long id) {
-        return null;
+    public ProductBuy getProductBuyById(long id) {
+        return productBuyRepository.getById(id);
     }
 
     @Override
     public ProductSale addProductSale(ProductSale productSale) {
-        return null;
+        return productSaleRepository.saveAndFlush(productSale);
     }
 
     @Override
-    public ProductSale getProductSale(long id) {
-        return null;
+    public ProductSale getProductSaleById(long id) {
+        return productSaleRepository.getById(id);
+    }
+
+    @Override
+    public List<ProductBuy> getAllProductBuy() {
+        return productBuyRepository.findAll();
+    }
+
+    @Override
+    public List<ProductSale> getAllProductSale() {
+        return productSaleRepository.findAll();
     }
 }

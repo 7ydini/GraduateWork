@@ -4,13 +4,19 @@ import org.springframework.stereotype.Service;
 import ru.ds.GraduateWork.model.entity.product.ProductBuy;
 import ru.ds.GraduateWork.model.entity.product.ProductSale;
 
+import java.util.List;
+
 @Service
 public interface ProductService {
     ProductBuy addProductBuy(ProductBuy productBuy);
 
-    ProductBuy getProductBuy(long id);
+    ProductBuy getProductBuyById(long id);
 
     ProductSale addProductSale(ProductSale productSale);
 
-    ProductSale getProductSale(long id);
+    ProductSale getProductSaleById(long id);
+
+    List<ProductBuy> getAllProductBuy();
+
+    List<ProductSale> getAllProductSale();
 }

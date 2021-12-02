@@ -9,6 +9,8 @@ import ru.ds.GraduateWork.repository.service.ServiceBuyRepository;
 import ru.ds.GraduateWork.repository.service.ServiceSaleRepository;
 import ru.ds.GraduateWork.service.ServiceService;
 
+import java.util.List;
+
 @Data
 @Service
 @AllArgsConstructor
@@ -18,22 +20,32 @@ public class ServiceServiceImpl implements ServiceService {
     private final ServiceSaleRepository serviceSaleRepository;
 
     @Override
+    public List<ServiceBuy> getAllServiceBuy() {
+        return serviceBuyRepository.findAll();
+    }
+
+    @Override
+    public List<ServiceSale> getAllServiceSale() {
+        return serviceSaleRepository.findAll();
+    }
+
+    @Override
     public ServiceBuy addServiceBuy(ServiceBuy serviceBuy) {
         return null;
     }
 
     @Override
-    public ServiceBuy getServiceBuy(long id) {
-        return null;
+    public ServiceBuy getServiceBuyById(long id) {
+        return serviceBuyRepository.getById(id);
     }
 
     @Override
     public ServiceSale addServiceSale(ServiceSale serviceSale) {
-        return null;
+        return serviceSaleRepository.saveAndFlush(serviceSale);
     }
 
     @Override
-    public ServiceSale getServiceSale(long id) {
-        return null;
+    public ServiceSale getServiceSaleById(long id) {
+        return serviceSaleRepository.getById(id);
     }
 }
