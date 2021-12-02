@@ -3296,7 +3296,12 @@
                         </h1>
                     </div>
                     <div class="article-content entry-content" itemprop="articleBody">
-
+                        <div th:each="product : ${list}">
+                            <h2><a th:href="@{/product/buy/{id}(id=${product.id})}" th:text="${product.fullName}">user</a>
+                                <a style="color: #222222"  th:text="${product.description}">user</a></h2>
+                            <br>
+                            <br>
+                        </div>
                         <span style="color: blue;">Eclipse / </span><span
                             style="color: orange;">Intellij IDEA / </span><span
                             style="color: lime;">JDeveloper</span><br>
@@ -3442,37 +3447,22 @@
                 <span class="menu-heading">Sidebar<span class="indicator"></span></span>
                 <ul>
 
-                    <li class="Classic"><span class="menu-background"></span><a class="menu-item" href="?view=classic"
-                                                                                target="_self" data-view-name="classic">Классический</a>
+                    <li class="Classic"><span class="menu-background"></span><a class="menu-item" th:href="@{/shop/product/buy}"
+                                                                                target="_self" data-view-name="classic">Product Buy</a>
                     </li>
 
-                    <li class="Flipcard"><span class="menu-background"></span><a class="menu-item" href="?view=flipcard"
+                    <li class="Flipcard"><span class="menu-background"></span><a class="menu-item" th:href="@{/shop/product/sale}"
                                                                                  target="_self"
-                                                                                 data-view-name="flipcard">Плитка</a>
+                                                                                 data-view-name="flipcard">Product Sale</a>
                     </li>
 
-                    <li class="Magazine"><span class="menu-background"></span><a class="menu-item" href="?view=magazine"
+                    <li class="Magazine"><span class="menu-background"></span><a class="menu-item" th:href="@{/shop/service/buy}"
                                                                                  target="_self"
-                                                                                 data-view-name="magazine">Журнал</a>
+                                                                                 data-view-name="magazine">Service Buy</a>
                     </li>
 
-                    <li class="Mosaic"><span class="menu-background"></span><a class="menu-item" href="?view=mosaic"
-                                                                               target="_self" data-view-name="mosaic">Мозаика</a>
-                    </li>
-
-                    <li class="Sidebar"><span class="menu-background"></span><a class="menu-item current"
-                                                                                href="?view=sidebar" target="_self"
-                                                                                data-view-name="sidebar">Боковая
-                        панель</a></li>
-
-                    <li class="Snapshot"><span class="menu-background"></span><a class="menu-item" href="?view=snapshot"
-                                                                                 target="_self"
-                                                                                 data-view-name="snapshot">Фотоальбом</a>
-                    </li>
-
-                    <li class="Timeslide"><span class="menu-background"></span><a class="menu-item"
-                                                                                  href="?view=timeslide" target="_self"
-                                                                                  data-view-name="timeslide">Хронология</a>
+                    <li class="Mosaic"><span class="menu-background"></span><a class="menu-item" th:href="@{/shop/service/sale}"
+                                                                               target="_self" data-view-name="mosaic">Service Sale</a>
                     </li>
 
                 </ul>

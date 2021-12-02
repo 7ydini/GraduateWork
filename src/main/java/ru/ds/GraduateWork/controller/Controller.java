@@ -23,7 +23,7 @@ public class Controller {
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("list", productService.getAllProductBuy());
-        return "startpage";
+        return "test";
     }
 
     @GetMapping("/create")
@@ -41,13 +41,13 @@ public class Controller {
     @GetMapping(value = "/product/buy")
     public String getAllProductBuy(Model model) {
         model.addAttribute("list", productService.getAllProductBuy());
-        return "startpage";
+        return "test";
     }
 
     @GetMapping(value = "/product/sale")
     public String getAllProductSale(Model model) {
         model.addAttribute("list", productService.getAllProductSale());
-        return "startpage";
+        return "test";
     }
 
     @GetMapping(value = "/product/buy/{id}")
@@ -66,13 +66,13 @@ public class Controller {
     @GetMapping(value = "/service/buy")
     public String getAllServiceBuy(Model model) {
         model.addAttribute("list", service.getAllServiceBuy());
-        return "startpage";
+        return "test";
     }
 
     @GetMapping(value = "/service/sale")
     public String getAllServiceSale(Model model) {
-        model.addAttribute(service.getAllServiceSale());
-        return "startpage";
+        model.addAttribute("list", service.getAllServiceSale());
+        return "test";
     }
 
     @GetMapping(value = "/service/buy/{id}")
