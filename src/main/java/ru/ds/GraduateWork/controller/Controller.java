@@ -77,7 +77,7 @@ public class Controller {
 
     @GetMapping(value = "/service/buy/{id}")
     public String getServiceBuyById(@PathVariable("id") long id, Model model) {
-        model.addAttribute(service.getServiceBuyById(id));
+        model.addAttribute("list", service.getServiceBuyById(id));
         return "getById";
     }
 
