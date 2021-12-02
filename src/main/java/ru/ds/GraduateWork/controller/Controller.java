@@ -12,8 +12,6 @@ import ru.ds.GraduateWork.model.entity.service.ServiceSale;
 import ru.ds.GraduateWork.service.Impl.ProductServiceImpl;
 import ru.ds.GraduateWork.service.Impl.ServiceServiceImpl;
 
-import java.util.List;
-
 @Data
 @RequestMapping(value = "/shop")
 @AllArgsConstructor
@@ -24,7 +22,7 @@ public class Controller {
 
     @GetMapping
     public String getAll(Model model) {
-        model.addAttribute("productList", productService.getAllProductBuy());
+        model.addAttribute("list", productService.getAllProductBuy());
         return "startpage";
     }
 
@@ -37,45 +35,54 @@ public class Controller {
 
     //Product
     @GetMapping(value = "/product/buy")
-    public List<ProductBuy> getAllProductBuy() {
-        return productService.getAllProductBuy();
+    public String getAllProductBuy(Model model) {
+        model.addAttribute("list", productService.getAllProductBuy());
+        return "startpage";
     }
 
     @GetMapping(value = "/product/sale")
-    public List<ProductSale> getAllProductSale() {
-        return productService.getAllProductSale();
+    public String getAllProductSale(Model model) {
+        model.addAttribute("list", productService.getAllProductSale());
+        return "startpage";
     }
 
     @GetMapping(value = "/product/buy/{id}")
-    public ProductBuy getProductBuyById(@PathVariable("id") long id) {
-        return productService.getProductBuyById(id);
+    public String getProductBuyById(@PathVariable("id") long id, Model model) {
+        model.addAttribute("list", productService.getProductBuyById(id));
+        return "getById";
     }
 
     @GetMapping(value = "/product/sale/{id}")
-    public ProductSale getProductSaleById(@PathVariable("id") long id) {
-        return productService.getProductSaleById(id);
+    public String getProductSaleById(@PathVariable("id") long id, Model model) {
+        model.addAttribute("list", productService.getProductSaleById(id));
+        return "getById";
     }
 
     //Service
     @GetMapping(value = "/service/buy")
-    public List<ServiceBuy> getAllServiceBuy() {
-        return service.getAllServiceBuy();
+    public String getAllServiceBuy(Model model) {
+        model.addAttribute("list", service.getAllServiceBuy());
+        return "startpage";
     }
 
     @GetMapping(value = "/service/sale")
-    public List<ServiceSale> getAllServiceSale() {
-        return service.getAllServiceSale();
+    public String getAllServiceSale(Model model) {
+        model.addAttribute(service.getAllServiceSale());
+        return "startpage";
     }
 
     @GetMapping(value = "/service/buy/{id}")
-    public ServiceBuy getServiceBuyById(@PathVariable("id") long id) {
-        return service.getServiceBuyById(id);
+    public String getServiceBuyById(@PathVariable("id") long id, Model model) {
+        model.addAttribute(service.getServiceBuyById(id));
+        return "getById";
     }
 
     @GetMapping(value = "/service/sale/{id}")
-    public ServiceSale getServiceSaleById(@PathVariable("id") long id) {
-        return service.getServiceSaleById(id);
+    public String getServiceSaleById(@PathVariable("id") long id, Model model) {
+        model.addAttribute("list", service.getServiceSaleById(id));
+        return "getById";
     }
+
 
     @PostMapping("/create")
     public String createAd(@ModelAttribute EntityPOJO pojo) {
@@ -91,6 +98,23 @@ public class Controller {
         } else service.addServiceSale(
                 new ServiceSale(pojo.getFullName(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
         return "redirect:/shop";
+    }
+    //redirects
+    @PostMapping(value = "/product/buy")
+    public String ProductBuyBtn(){
+        return "redirect:/shop/product/buy";
+    }
+    @PostMapping(value = "/product/sale")
+    public String ProductSaleBtn(){
+        return "redirect:/shop/product/sale";
+    }
+    @PostMapping(value = "/service/buy")
+    public String ServiceBuyBtn(){
+        return "redirect:/shop/service/buy";
+    }
+    @PostMapping(value = "/product/buy")
+    public String ServiceSaleBtn(){
+        return "redirect:/shop/service/sale";
     }
 
 }
