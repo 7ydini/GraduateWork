@@ -29,4 +29,11 @@ public class ProductBuy {
 
     @Column(name = "PHONE")
     private String phone;
+
+    public ProductBuy(String fullName, String description, String mail, String phone) {
+        this.fullName = fullName;
+        this.description = description;
+        this.mail = mail;
+        this.phone = phone;
+    }
 }

@@ -3,11 +3,8 @@ package ru.ds.GraduateWork.controller;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.*;
+import ru.ds.GraduateWork.model.entity.EntityPOJO;
 import ru.ds.GraduateWork.model.entity.product.ProductBuy;
 import ru.ds.GraduateWork.model.entity.product.ProductSale;
 import ru.ds.GraduateWork.model.entity.service.ServiceBuy;
@@ -27,14 +24,16 @@ public class Controller {
 
     @GetMapping
     public String getAll(Model model) {
-        model.addAttribute(productService.getAllProductBuy());
+        model.addAttribute("productList", productService.getAllProductBuy());
         return "startpage";
     }
 
     @GetMapping("/create")
-    public String createView(){
+    public String createView(Model model) {
+        model.addAttribute("pojo", new EntityPOJO());
         return "create";
     }
+
 
     //Product
     @GetMapping(value = "/product/buy")
@@ -76,6 +75,22 @@ public class Controller {
     @GetMapping(value = "/service/sale/{id}")
     public ServiceSale getServiceSaleById(@PathVariable("id") long id) {
         return service.getServiceSaleById(id);
+    }
+
+    @PostMapping("/create")
+    public String createAd(@ModelAttribute EntityPOJO pojo) {
+        if (pojo.isProduct()) {
+            if (pojo.isBuy()) {
+                productService.addProductBuy(
+                        new ProductBuy(pojo.getFullName(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
+            } else productService.addProductSale(
+                    new ProductSale(pojo.getFullName(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
+        } else if (pojo.isBuy()) {
+            service.addServiceBuy(
+                    new ServiceBuy(pojo.getFullName(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
+        } else service.addServiceSale(
+                new ServiceSale(pojo.getFullName(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
+        return "redirect:/shop";
     }
 
 }

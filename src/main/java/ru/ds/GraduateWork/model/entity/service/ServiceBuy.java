@@ -30,4 +30,10 @@ public class ServiceBuy {
     @Column(name = "PHONE")
     private String phone;
 
+    public ServiceBuy(String fullName, String description, String mail, String phone) {
+        this.fullName = fullName;
+        this.description = description;
+        this.mail = mail;
+        this.phone = phone;
+    }
 }

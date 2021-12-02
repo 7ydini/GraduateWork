@@ -1,13 +1,37 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>New announcement</title>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
+<form action="#" th:action="@{/shop/create}" th:object="${pojo}" method="post">
 
+    <div class="custom-control custom-radio custom-control-inline">
+        <a>Select type</a>
+        <input type="radio" id="option1" name="option1" class="custom-control-input" value="true" th:field="*{product}" checked="checked" />
+        <label class="custom-control-label" for="option1">Product</label>
+        <input type="radio" id="option2" name="option2" class="custom-control-input" value="false" th:field="*{product}"/>
+        <label class="custom-control-label" for="option2">Service</label>
+    </div>
+
+    <div class="custom-control custom-radio custom-control-inline">
+        <a>Select type</a>
+        <input type="radio" id="option3" name="option3" class="custom-control-input" value="true" th:field="*{buy}" checked="checked"/>
+        <label class="custom-control-label" for="option3">Buy</label>
+        <input type="radio" id="option4" name="option4" class="custom-control-input" value="false" th:field="*{buy}"/>
+        <label class="custom-control-label" for="option4">Sale</label>
+    </div>
+
+    <p>Product/service Name: <input type="text" th:field="*{fullName}" /></p>
+    <p>Description: <input type="text" th:field="*{description}" /></p>
+    <p>Mail: <input type="email" th:field="*{mail}" /></p>
+    <p>Phone: <input type="text" th:field="*{phone}" /></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
