@@ -31,7 +31,7 @@ public class ServiceServiceImpl implements ServiceService {
 
     @Override
     public ServiceBuy addServiceBuy(ServiceBuy serviceBuy) {
-        return null;
+        return serviceBuyRepository.saveAndFlush(serviceBuy);
     }
 
     @Override
