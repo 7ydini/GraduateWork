@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "PRODUCT_BUY")
+@Table(name = "product_buy")
 @NoArgsConstructor
 @AllArgsConstructor
 @SequenceGenerator(name = "seq", sequenceName = "graduate_seq")

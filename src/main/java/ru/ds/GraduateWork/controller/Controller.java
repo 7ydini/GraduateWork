@@ -2,9 +2,12 @@ package ru.ds.GraduateWork.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import ru.ds.GraduateWork.model.entity.product.ProductBuy;
 import ru.ds.GraduateWork.model.entity.product.ProductSale;
 import ru.ds.GraduateWork.model.entity.service.ServiceBuy;
@@ -23,8 +26,14 @@ public class Controller {
     private final ServiceServiceImpl service;
 
     @GetMapping
-    public List<ProductBuy> getAll() {
-        return productService.getAllProductBuy();
+    public String getAll(Model model) {
+        model.addAttribute(productService.getAllProductBuy());
+        return "startpage";
+    }
+
+    @GetMapping("/create")
+    public String createView(){
+        return "create";
     }
 
     //Product
