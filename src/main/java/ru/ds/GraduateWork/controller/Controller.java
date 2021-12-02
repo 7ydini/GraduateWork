@@ -31,6 +31,10 @@ public class Controller {
         model.addAttribute("pojo", new EntityPOJO());
         return "create";
     }
+    @GetMapping("/test")
+    public String createView() {
+        return "test";
+    }
 
 
     //Product
@@ -100,19 +104,19 @@ public class Controller {
         return "redirect:/shop";
     }
     //redirects
-    @PostMapping(value = "/product/buy")
+    @PostMapping(value = "/product/buy/btn")
     public String ProductBuyBtn(){
         return "redirect:/shop/product/buy";
     }
-    @PostMapping(value = "/product/sale")
+    @PostMapping(value = "/product/sale/btn")
     public String ProductSaleBtn(){
         return "redirect:/shop/product/sale";
     }
-    @PostMapping(value = "/service/buy")
+    @PostMapping(value = "/service/buy/btn")
     public String ServiceBuyBtn(){
         return "redirect:/shop/service/buy";
     }
-    @PostMapping(value = "/product/buy")
+    @PostMapping(value = "/service/sale/btn")
     public String ServiceSaleBtn(){
         return "redirect:/shop/service/sale";
     }
