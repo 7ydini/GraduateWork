@@ -18,6 +18,9 @@ public class ProductSale {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private long id;
 
+    @Column(name = "price")
+    private String price;
+
     @Column(name = "FULL_NAME")
     private String fullName;
 
@@ -30,7 +33,8 @@ public class ProductSale {
     @Column(name = "PHONE")
     private String phone;
 
-    public ProductSale(String fullName, String description, String mail, String phone) {
+    public ProductSale(String fullName, String price, String description, String mail, String phone) {
+        this.price = price;
         this.fullName = fullName;
         this.description = description;
         this.mail = mail;

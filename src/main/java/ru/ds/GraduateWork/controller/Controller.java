@@ -93,14 +93,14 @@ public class Controller {
         if (pojo.isProduct()) {
             if (pojo.isBuy()) {
                 productService.addProductBuy(
-                        new ProductBuy(pojo.getFullName(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
+                        new ProductBuy(pojo.getFullName(), pojo.getPrice(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
             } else productService.addProductSale(
-                    new ProductSale(pojo.getFullName(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
+                    new ProductSale(pojo.getFullName(), pojo.getPrice(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
         } else if (pojo.isBuy()) {
             service.addServiceBuy(
-                    new ServiceBuy(pojo.getFullName(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
+                    new ServiceBuy(pojo.getFullName(), pojo.getPrice(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
         } else service.addServiceSale(
-                new ServiceSale(pojo.getFullName(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
+                new ServiceSale(pojo.getFullName(), pojo.getPrice(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
         return "redirect:/shop";
     }
     //redirects

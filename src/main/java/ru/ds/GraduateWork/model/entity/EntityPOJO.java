@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class EntityPOJO {
 
-    //private RadioBattonSelect radio;
-
     private boolean Product;
 
     private boolean buy;
+
+    private String price;
 
     private String fullName;
 

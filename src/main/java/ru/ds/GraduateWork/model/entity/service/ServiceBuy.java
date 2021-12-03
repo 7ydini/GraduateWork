@@ -18,6 +18,9 @@ public class ServiceBuy {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private long id;
 
+    @Column(name = "price")
+    private String price;
+
     @Column(name = "FULL_NAME")
     private String fullName;
 
@@ -30,7 +33,8 @@ public class ServiceBuy {
     @Column(name = "PHONE")
     private String phone;
 
-    public ServiceBuy(String fullName, String description, String mail, String phone) {
+    public ServiceBuy(String fullName, String price, String description, String mail, String phone) {
+        this.price = price;
         this.fullName = fullName;
         this.description = description;
         this.mail = mail;
