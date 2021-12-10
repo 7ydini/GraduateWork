@@ -4,10 +4,169 @@
     <meta charset="UTF-8">
     <title>Shop</title>
 </head>
-<body>
-<div th:each="product : ${list}">
-    <a th:href="@{/shop/product/buy/{id}(id=${product.id})}" th:text="${product.fullName}">user</a>
-    <a  th:text="${product.description}">user</a>
+<body class="variant-sidebar sidebar notouch viewitem-open">
+<div class="particle">
+    <div class="viewitem-panel">
+        <div class="viewitem-wrap">
+            <div class="viewitem-background"></div>
+            <div class="viewitem-header"></div>
+            <div class="viewitem-inner">
+                <div class="article-content entry-content" itemprop="articleBody">
+                    <div th:each="product : ${list}">
+                        <div class="viewitem-content" tabindex="0">
+                            <div class="article hentry  " itemscope="" itemtype="http://schema.org/BlogPosting">
+                                <meta itemprop="blogId" content="4184693225455500017">
+                                <meta itemprop="postId" content="7172083993969372585">
+                                    <h1 class="title entry-title" itemprop="name">
+                                        <a th:href="@{/product/buy/{id}(id=${product.id})}"
+                                           th:text="${product.fullName}">user</a>
+                                        <span class="blog-admin"><a class="edit"
+                                                                    href="https://www.blogger.com/post-edit.g?blogID=4184693225455500017&amp;postID=7172083993969372585&amp;from=pencil"
+                                                                    target="_self" title="Edit"></a></span>
+                                    </h1>
+                                </div>
+                                <div class="article-content entry-content" itemprop="articleBody">
+                                    <p>Price: <span style="color: #222222" th:text="${product.price}">user</span></h2>
+                                    </p>
+                                    <span style="color: #222222" th:text="${product.description}">user</span></h2>
+                                    <br>
+                                    <br>
+                                    <div class="line"></div>
+                                    <div class="nav-arrows">
+                                        <a href="#"><span class="glyphicon glyphicon-menu-left"
+                                                          aria-hidden="true"></span></a>
+                                        <a href="#"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
+                                    </div>
+                                    <br>
+                                </div>
+                                <div class="article-footer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-footer">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div id="header-container">
+    <div id="header" class="header">
+        <div class="header-bar">
+
+<span class="title">
+  <a href="/shop" target="_self"><h1 title="Покупка/продажа товаров и услуг!">Покупка/продажа товаров и услуг!</h1></a>
+
+</span><input type="text" id="search" autocomplete="off" placeholder="Поиск">
+        </div>
+        <div class="header-drawer sticky open">
+            <div id="views" class="tabs">
+                <span class="menu-heading">Product<span class="indicator"></span></span>
+                <ul>
+                    <li class="Classic"><span class="menu-background"></span>
+                        <a class="menu-item" th:href="@{/shop/product/buy}" target="_self"
+                           data-view-name="classic">Buy</a>
+                    </li>
+                    <li class="Flipcard"><span class="menu-background"></span>
+                        <a class="menu-item" th:href="@{/shop/product/sale}" target="_self" data-view-name="flipcard">Sale</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="views2" class="tabs">
+                <span class="menu-heading">Service<span class="indicator"></span></span>
+                <ul>
+                    <li class="Classic"><span class="menu-background"></span>
+                        <a class="menu-item" th:href="@{/shop/service/buy}" target="_self"
+                           data-view-name="classic">Buy</a>
+                    </li>
+                    <li class="Flipcard"><span class="menu-background"></span>
+                        <a class="menu-item" th:href="@{/shop/service/sale}" target="_self" data-view-name="flipcard">Sale</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function ($) {
+        // Make the pages switch between tabs and menu as needed
+        var pages = $('#pages');
+        var tabs = pages.length ? pages : $('#views'); // If no pages, views will be tabs, same resizing applies.
+        var tabs2 = pages.length ? pages : $('#views2'); // If no pages, views will be tabs, same resizing applies.
+        if (tabs.length) {
+            function onResize(e) {
+                tabs.removeClass('menu').addClass('tabs');
+                var taken = 0;
+                tabs.parent().children().each(function () {
+                    taken += $(this).outerWidth();
+                });
+                var overflowing = tabs.parent().width() < (taken + 50); // Add a buffer for safety.
+                tabs.removeClass('tabs').addClass('menu');
+            }
+
+            $(window).resize(onResize);
+            onResize(); // Resize immediately.
+
+            // Mark a page as selected when it is open.
+            var rePage = new RegExp('.*/p(/[^/]+.html$)');
+            $(blogger.ui()).bind('select clearselection', function (e, item) {
+                pages.find('.menu-item').each(function () {
+                    var current = false;
+                    if (item) {
+                        var us = rePage.exec($(this).attr('href'));
+                        var them = rePage.exec(item.url);
+                        current = !!(us && them && (us[1] == them[1]));
+                    }
+                    $(this).toggleClass('current', current);
+                });
+            });
+        }
+        if (tabs2.length) {
+            function onResize(e) {
+                tabs2.removeClass('menu').addClass('tabs');
+                var taken = 0;
+                tabs2.parent().children().each(function () {
+                    taken += $(this).outerWidth();
+                });
+                var overflowing = tabs2.parent().width() < (taken + 50); // Add a buffer for safety.
+                tabs2.removeClass('tabs').addClass('menu');
+            }
+
+            $(window).resize(onResize);
+            onResize(); // Resize immediately.
+
+            // Mark a page as selected when it is open.
+            var rePage = new RegExp('.*/p(/[^/]+.html$)');
+            $(blogger.ui()).bind('select clearselection', function (e, item) {
+                pages.find('.menu-item').each(function () {
+                    var current = false;
+                    if (item) {
+                        var us = rePage.exec($(this).attr('href'));
+                        var them = rePage.exec(item.url);
+                        current = !!(us && them && (us[1] == them[1]));
+                    }
+                    $(this).toggleClass('current', current);
+                });
+            });
+        }
+    })(jQuery);
+</script>
+<div id="loading">
+    <span>Загрузка...</span>
+</div>
+<div id="chromefix">
+    <!-- Fix Chrome 12+ bug with GPU accelerated composition causing
+    flickering/performance issues. Note: put this last, else text glitches. -->
+</div>
+
+
+<div id="attribution-container">
+    <div class="attribution">Тема "Динамический просмотр". Технологии <a href="https://www.blogger.com" target="_blank">Blogger</a>.
+    </div>
 </div>
 </body>
 </html>
