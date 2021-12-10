@@ -23,7 +23,7 @@ public class Controller {
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("list", productService.getAllProductBuy());
-        return "test";
+        return "startpage";
     }
 
     @GetMapping("/create")
@@ -31,6 +31,7 @@ public class Controller {
         model.addAttribute("pojo", new EntityPOJO());
         return "create";
     }
+
     @GetMapping("/test")
     public String createView() {
         return "test";
@@ -38,13 +39,13 @@ public class Controller {
 
 
     //Product
-    @GetMapping(value = "/product/buy")
+    @GetMapping(value = "/product/buy/")
     public String getAllProductBuy(Model model) {
         model.addAttribute("list", productService.getAllProductBuy());
         return "test";
     }
 
-    @GetMapping(value = "/product/sale")
+    @GetMapping(value = "/product/sale/")
     public String getAllProductSale(Model model) {
         model.addAttribute("list", productService.getAllProductSale());
         return "test";
@@ -63,13 +64,13 @@ public class Controller {
     }
 
     //Service
-    @GetMapping(value = "/service/buy")
+    @GetMapping(value = "/service/buy/")
     public String getAllServiceBuy(Model model) {
         model.addAttribute("list", service.getAllServiceBuy());
         return "test";
     }
 
-    @GetMapping(value = "/service/sale")
+    @GetMapping(value = "/service/sale/")
     public String getAllServiceSale(Model model) {
         model.addAttribute("list", service.getAllServiceSale());
         return "test";
@@ -103,22 +104,46 @@ public class Controller {
                 new ServiceSale(pojo.getFullName(), pojo.getPrice(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
         return "redirect:/shop";
     }
+
     //redirects
     @PostMapping(value = "/product/buy/btn")
-    public String ProductBuyBtn(){
+    public String ProductBuyBtn() {
         return "redirect:/shop/product/buy";
     }
+
     @PostMapping(value = "/product/sale/btn")
-    public String ProductSaleBtn(){
+    public String ProductSaleBtn() {
         return "redirect:/shop/product/sale";
     }
+
     @PostMapping(value = "/service/buy/btn")
-    public String ServiceBuyBtn(){
+    public String ServiceBuyBtn() {
         return "redirect:/shop/service/buy";
     }
+
     @PostMapping(value = "/service/sale/btn")
-    public String ServiceSaleBtn(){
+    public String ServiceSaleBtn() {
         return "redirect:/shop/service/sale";
+    }
+
+    @GetMapping(value = "/product/sale")
+    public String getAllProductSaleRed() {
+        return "redirect:/shop/product/sale/";
+    }
+
+    @GetMapping(value = "/product/buy")
+    public String getAllProductBuyRed() {
+        return "redirect:/shop/product/buy/";
+    }
+
+    @GetMapping(value = "/service/sale")
+    public String getAllServiceSaleRed() {
+        return "redirect:/shop/service/sale/";
+    }
+
+    @GetMapping(value = "/service/buy")
+    public String getAllServiceBuyRed() {
+        return "redirect:/shop/service/buy/";
     }
 
 }

@@ -18,11 +18,9 @@
                                 <meta itemprop="blogId" content="4184693225455500017">
                                 <meta itemprop="postId" content="7172083993969372585">
                                     <h1 class="title entry-title" itemprop="name">
-                                        <a th:href="@{/product/buy/{id}(id=${product.id})}"
+                                        <a th:href="@{/shop/product/buy/{id}(id=${product.id})}"
                                            th:text="${product.fullName}">user</a>
-                                        <span class="blog-admin"><a class="edit"
-                                                                    href="https://www.blogger.com/post-edit.g?blogID=4184693225455500017&amp;postID=7172083993969372585&amp;from=pencil"
-                                                                    target="_self" title="Edit"></a></span>
+                                        <span class="blog-admin"></span>
                                     </h1>
                                 </div>
                                 <div class="article-content entry-content" itemprop="articleBody">
@@ -155,18 +153,9 @@
         }
     })(jQuery);
 </script>
-<div id="loading">
-    <span>Загрузка...</span>
-</div>
 <div id="chromefix">
     <!-- Fix Chrome 12+ bug with GPU accelerated composition causing
     flickering/performance issues. Note: put this last, else text glitches. -->
-</div>
-
-
-<div id="attribution-container">
-    <div class="attribution">Тема "Динамический просмотр". Технологии <a href="https://www.blogger.com" target="_blank">Blogger</a>.
-    </div>
 </div>
 </body>
 </html>
