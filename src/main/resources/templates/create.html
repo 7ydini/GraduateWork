@@ -10,6 +10,7 @@
 
     <div class="custom-control custom-radio custom-control-inline">
         <a>Select type</a>
+        <br>
         <input type="radio" id="option1" name="option1" class="custom-control-input" value="true" th:field="*{product}" checked="checked" />
         <label class="custom-control-label" for="option1">Product</label>
         <input type="radio" id="option2" name="option2" class="custom-control-input" value="false" th:field="*{product}"/>
@@ -18,17 +19,32 @@
 
     <div class="custom-control custom-radio custom-control-inline">
         <a>Select type</a>
+        <br>
         <input type="radio" id="option3" name="option3" class="custom-control-input" value="true" th:field="*{buy}" checked="checked"/>
         <label class="custom-control-label" for="option3">Buy</label>
         <input type="radio" id="option4" name="option4" class="custom-control-input" value="false" th:field="*{buy}"/>
         <label class="custom-control-label" for="option4">Sale</label>
     </div>
 
-    <p>Product/service Name: <input type="text" th:field="*{fullName}" /></p>
-    <p>Description: <input type="text" th:field="*{description}" /></p>
-    <p>Mail: <input type="email" th:field="*{mail}" /></p>
-    <p>Phone: <input type="text" th:field="*{phone}" /></p>
-    <p><input class="btn btn-primary" type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    <div class="form-group">
+    <p>Product/service Name: <br><label>
+        <input type="text" th:field="*{fullName}" />
+    </label></p>
+    <p>Price: <br><label>
+        <input type="text" th:field="*{price}" />
+    </label></p>
+    <p>Description: <br><label>
+        <textarea rows="4" cols="50" th:field="*{description}"></textarea>
+    </label></p>
+    <p>Mail: <br><label>
+        <input type="email" th:field="*{mail}" />
+    </label></p>
+    <p>Phone: <br><label>
+        <input type="text" th:field="*{phone}" />
+    </label></p>
+    </div>
+    <p><button class="btn btn-primary" type="submit">Submit form</button>
+        <button class="btn btn-primary" type="reset">Reset</button></p>
 </form>
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>

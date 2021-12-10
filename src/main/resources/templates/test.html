@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" class="v2" dir="ltr" lang="ru">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="https://www.blogger.com/static/v1/widgets/1529571102-css_bundle_v2.css" rel="stylesheet"
           type="text/css">
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
@@ -1413,6 +1413,11 @@
         position: relative;
         z-index: 999;
     }
+    #views2 {
+        float: right;
+        position: relative;
+        z-index: 999;
+    }
 
     #header .menu .menu-item,
     #header .menu .menu-heading {
@@ -1450,6 +1455,9 @@
         font-family: 'Helvetica Neue Light', HelveticaNeue-Light, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
 
+    #views2 .menu-item{
+        text-transform: capitalize;
+    }
     #views .menu-item {
         text-transform: capitalize;
     }
@@ -3272,7 +3280,7 @@
         <div class="viewitem-background"></div>
         <div class="viewitem-header"></div>
         <div class="viewitem-inner">
-            <div class="viewitem-content" tabindex="0">
+            <!--<div class="viewitem-content" tabindex="0">
                 <div class="article hentry  " itemscope="" itemtype="http://schema.org/BlogPosting">
                     <meta itemprop="blogId" content="4184693225455500017">
                     <meta itemprop="postId" content="7172083993969372585">
@@ -3293,22 +3301,72 @@
                                                         href="https://www.blogger.com/post-edit.g?blogID=4184693225455500017&amp;postID=7172083993969372585&amp;from=pencil"
                                                         target="_self" title="Edit"></a></span>
                         </h1>
-                    </div>
+                    </div>-->
                     <div class="article-content entry-content" itemprop="articleBody">
                         <div th:each="product : ${list}">
-                            <h2><a th:href="@{/product/buy/{id}(id=${product.id})}" th:text="${product.fullName}">user</a>
-                                <a style="color: #222222"  th:text="${product.description}">user</a></h2>
+                            <div class="viewitem-content" tabindex="0">
+                                <div class="article hentry  " itemscope="" itemtype="http://schema.org/BlogPosting">
+                                    <meta itemprop="blogId" content="4184693225455500017">
+                                    <meta itemprop="postId" content="7172083993969372585">
+                                    <div class="article-header">
+                                        <a class="ribbon date " title="30th June 2012"
+                                           href="http://androidssurrokk.blogspot.com/2012/06/eclipse_30.html" itemprop="url">
+                                            <div class="top ribbon-piece">Jun</div>
+                                            <div class="bottom ribbon-piece">30</div>
+                                            <div class="tail">
+                                                <div class="left ribbon-piece"></div>
+                                                <div class="right ribbon-piece"></div>
+                                            </div>
+                                        </a>
+                                        <h1 class="title entry-title" itemprop="name">
+                                            <a th:href="@{/product/buy/{id}(id=${product.id})}"
+                                               th:text="${product.fullName}">user</a>
+                                            <span class="blog-admin"><a class="edit"
+                                                                        href="https://www.blogger.com/post-edit.g?blogID=4184693225455500017&amp;postID=7172083993969372585&amp;from=pencil"
+                                                                        target="_self" title="Edit"></a></span>
+                                        </h1>
+                                    </div>
+                                    <div class="article-content entry-content" itemprop="articleBody">
+                                            <!--<h2><a th:href="@{/product/buy/{id}(id=${product.id})}"
+                                                   th:text="${product.fullName}">user</a>-->
+                                                <p>Price: <span style="color: #222222" th:text="${product.price}">user</span></h2>
+                                            </p>
+                                            <span style="color: #222222" th:text="${product.description}">user</span></h2>
+                                            <br>
+                                            <br>
+                                            <div class="line"></div>
+                                            <div class="nav-arrows">
+                                                <a href="#"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
+                                                <a href="#"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
+                                            </div>
+                                        <br>
+                                    </div>
+                                    <div class="article-footer">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<h2><a th:href="@{/product/buy/{id}(id=${product.id})}"
+                                   th:text="${product.fullName}">user</a>
+                                <p>Price: <span style="color: #222222" th:text="${product.price}">user</span></h2>
+                            </p>
+                            <span style="color: #222222" th:text="${product.description}">user</span></h2>
                             <br>
                             <br>
+                            <div class="line"></div>
+                            <div class="nav-arrows">
+                                <a href="#"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
+                                <a href="#"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
+                            </div>-->
                         </div>
-                        <span style="color: blue;">Eclipse / </span><span
+                        <!--<span style="color: blue;">Eclipse / </span><span
                             style="color: orange;">Intellij IDEA / </span><span
                             style="color: lime;">JDeveloper</span><br>
-                    </div>
+                    </div>-->
                     <div class="article-footer">
                     </div>
                 </div>
             </div>
+
 
         </div>
     </div>
@@ -3320,7 +3378,7 @@
         <div class="header-bar">
 
 <span class="title" onclick="$('html,body').stop().animate({'scrollTop': 0})">
-  <a href="/" target="_self"><h1 title="Записки разработчика под Android">Покупка/продажа товаров и услуг!</h1></a>
+  <a href="/" target="_self"><h1 title="Покупка/продажа товаров и услуг!">Покупка/продажа товаров и услуг!</h1></a>
 
 </span>
             <input type="text" id="search" autocomplete="off" placeholder="Поиск">
@@ -3328,47 +3386,38 @@
 
         </div>
         <div class="header-drawer sticky open">
-
             <div id="views" class="tabs">
-                <span class="menu-heading">Sidebar<span class="indicator"></span></span>
+                <span class="menu-heading">Product<span class="indicator"></span></span>
                 <ul>
-
-                    <li class="Classic"><span class="menu-background"></span><a class="menu-item" th:href="@{/shop/product/buy}"
-                                                                                target="_self" data-view-name="classic">Product Buy</a>
+                    <li class="Classic"><span class="menu-background"></span>
+                        <a class="menu-item" th:href="@{/shop/product/buy}" target="_self" data-view-name="classic">Buy</a>
                     </li>
-
-                    <li class="Flipcard"><span class="menu-background"></span><a class="menu-item" th:href="@{/shop/product/sale}"
-                                                                                 target="_self"
-                                                                                 data-view-name="flipcard">Product Sale</a>
+                    <li class="Flipcard"><span class="menu-background"></span>
+                        <a class="menu-item" th:href="@{/shop/product/sale}" target="_self" data-view-name="flipcard">Sale</a>
                     </li>
-
-                    <li class="Magazine"><span class="menu-background"></span><a class="menu-item" th:href="@{/shop/service/buy}"
-                                                                                 target="_self"
-                                                                                 data-view-name="magazine">Service Buy</a>
-                    </li>
-
-                    <li class="Mosaic"><span class="menu-background"></span><a class="menu-item" th:href="@{/shop/service/sale}"
-                                                                               target="_self" data-view-name="mosaic">Service Sale</a>
-                    </li>
-
                 </ul>
             </div>
-
-
-            <div class="blog-admin admin-controls" style="">
-                <a class="new-post"
-                   href="https://www.blogger.com/post-edit.g?blogID=4184693225455500017&amp;from=pencil" target="_self"
-                   title="Новое сообщение"></a>
-                <a class="dashboard" href="https://www.blogger.com/home" target="_self" title="Панель инструментов"></a>
+            <div id="views2" class="tabs">
+                <span class="menu-heading">Service<span class="indicator"></span></span>
+                <ul>
+                    <li class="Classic"><span class="menu-background"></span>
+                        <a class="menu-item" th:href="@{/shop/service/buy}" target="_self" data-view-name="classic">Buy</a>
+                    </li>
+                    <li class="Flipcard"><span class="menu-background"></span>
+                        <a class="menu-item" th:href="@{/shop/service/sale}" target="_self" data-view-name="flipcard">Sale</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
+
 </div>
 <script>
     (function ($) {
         // Make the pages switch between tabs and menu as needed
         var pages = $('#pages');
         var tabs = pages.length ? pages : $('#views'); // If no pages, views will be tabs, same resizing applies.
+        var tabs2 = pages.length ? pages : $('#views2'); // If no pages, views will be tabs, same resizing applies.
         if (tabs.length) {
             function onResize(e) {
                 tabs.removeClass('menu').addClass('tabs');
@@ -3377,7 +3426,35 @@
                     taken += $(this).outerWidth();
                 });
                 var overflowing = tabs.parent().width() < (taken + 50); // Add a buffer for safety.
-                overflowing ? tabs.removeClass('tabs').addClass('menu') : tabs.addClass('tabs');
+                tabs.removeClass('tabs').addClass('menu');
+            }
+
+            $(window).resize(onResize);
+            onResize(); // Resize immediately.
+
+            // Mark a page as selected when it is open.
+            var rePage = new RegExp('.*/p(/[^/]+.html$)');
+            $(blogger.ui()).bind('select clearselection', function (e, item) {
+                pages.find('.menu-item').each(function () {
+                    var current = false;
+                    if (item) {
+                        var us = rePage.exec($(this).attr('href'));
+                        var them = rePage.exec(item.url);
+                        current = !!(us && them && (us[1] == them[1]));
+                    }
+                    $(this).toggleClass('current', current);
+                });
+            });
+        }
+        if (tabs2.length) {
+            function onResize(e) {
+                tabs2.removeClass('menu').addClass('tabs');
+                var taken = 0;
+                tabs2.parent().children().each(function () {
+                    taken += $(this).outerWidth();
+                });
+                var overflowing = tabs2.parent().width() < (taken + 50); // Add a buffer for safety.
+                tabs2.removeClass('tabs').addClass('menu');
             }
 
             $(window).resize(onResize);

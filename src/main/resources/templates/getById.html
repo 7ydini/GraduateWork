@@ -7,9 +7,15 @@
 <body>
 <div th:each="product : ${list}">
     <a th:text="${product.fullName}">user</a>
-    <a th:text="${product.description}">user</a>
-    <a th:text="${product.mail}">user</a>
-    <a th:text="${product.phone}">user</a>
+    <br>
+
+    <p>Price: <a th:text="${product.price}">user</a></p>
+    <br>
+    <p>Description: <a th:text="${product.description}">user</a></p>
+    <br>
+    <p>Mail: <a th:text="${product.mail}">user</a></p>
+    <br>
+    <p>Phone: <a th:text="${product.phone}">user</a></p>
 </div>
 </body>
 </html>
