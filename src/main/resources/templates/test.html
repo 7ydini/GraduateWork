@@ -1073,11 +1073,14 @@
         color: rgba(255, 255, 255, 0.6) !important;
     }
 
-    body.viewitem-open #header #views2 .menu-heading {
+    body.viewitem-open #header .menu-heading {
         color: rgba(255, 255, 255, 0.6) !important;
     }
 
-    body.viewitem-open #header #views .menu-heading .indicator {
+    body.viewitem-open #header #views  .menu-heading .indicator {
+        border-color: rgba(255, 255, 255, 0.6) transparent transparent transparent !important;
+    }
+    body.viewitem-open #header #views2  .menu-heading .indicator {
         border-color: rgba(255, 255, 255, 0.6) transparent transparent transparent !important;
     }
 
@@ -1463,7 +1466,6 @@
     <script async="" src="https://www.gstatic.com/feedback/js/help/prod/service/lazy.min.js"></script>
 </head>
 <body class="variant-sidebar sidebar notouch viewitem-open">
-<div class="particle">
 <div class="viewitem-panel">
     <div class="viewitem-wrap">
         <div class="viewitem-background"></div>
@@ -1510,14 +1512,14 @@
 
     </div>
 </div>
-</div>
 
 <div id="header-container">
     <div id="header" class="header">
         <div class="header-bar">
 
 <span class="title">
-  <a href="/shop" target="_self"><h1 title="Покупка/продажа товаров и услуг!">Main Menu</h1></a>
+  <a href="/shop" target="_self"><h1 title="Main Menu">Main Menu</h1></a>
+    <a href="/shop/create" target="_self"><h1 style="margin-left: 10%" title="Create new Application">Create new Application</h1></a>
 
 </span>
         </div>
