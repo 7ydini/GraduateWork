@@ -34,7 +34,7 @@ public class Controller {
 
     @GetMapping("/test")
     public String createView() {
-        return "test";
+        return "applications";
     }
 
 
@@ -42,13 +42,13 @@ public class Controller {
     @GetMapping(value = "/product/buy/")
     public String getAllProductBuy(Model model) {
         model.addAttribute("list", productService.getAllProductBuy());
-        return "test";
+        return "applications";
     }
 
     @GetMapping(value = "/product/sale/")
     public String getAllProductSale(Model model) {
         model.addAttribute("list", productService.getAllProductSale());
-        return "test";
+        return "applications";
     }
 
     @GetMapping(value = "/product/buy/{id}")
@@ -67,13 +67,13 @@ public class Controller {
     @GetMapping(value = "/service/buy/")
     public String getAllServiceBuy(Model model) {
         model.addAttribute("list", service.getAllServiceBuy());
-        return "test";
+        return "applications";
     }
 
     @GetMapping(value = "/service/sale/")
     public String getAllServiceSale(Model model) {
         model.addAttribute("list", service.getAllServiceSale());
-        return "test";
+        return "applications";
     }
 
     @GetMapping(value = "/service/buy/{id}")
