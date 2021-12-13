@@ -1531,37 +1531,39 @@
                 <div class="article-content entry-content" itemprop="articleBody">
                     <div class="viewitem-content" tabindex="0">
                     <form action="#" th:action="@{/shop/create}" th:object="${pojo}" method="post">
-
                         <div class="form-group">
-                            <h2>Product/service Name: <br><label>
-                                <input type="text" th:field="*{fullName}" placeholder="Type Here"
-                                       th:class="${#fields.allErrors()}? fieldError" />
-                            </label></h2>
-                            <h2>Price: <br><label>
-                                <input type="text" th:field="*{price}" placeholder="Type Here"
-                                       th:class="${#fields.allErrors()}? fieldError" />
-                            </label></h2>
-                            <h2>Description: <br><label>
-                                <textarea rows="4" cols="50" th:field="*{description}" placeholder="Type Here"
-                                          th:class="${#fields.allErrors()}? fieldError"></textarea>
-                            </label></h2>
-                            <h2>Mail: <br><label>
-                                <input type="email" th:field="*{mail}" placeholder="Type Here"
-                                       th:class="${#fields.allErrors()}? fieldError"/>
-                            </label></h2>
-                            <h2>Phone: <br><label>
-                                <input type="text" th:field="*{phone}" placeholder="Type Here"
-                                       th:class="${#fields.allErrors()}? fieldError" />
-                            </label></h2>
+                            <label for="fullName">Product/Service Name</label>
+                            <input class="form-control" type="text" th:field="*{fullName}" id="fullName" placeholder="Type here">
+                            <label for="fullName" th:text="${fullNameError}" style="color: red">error</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input class="form-control" type="text" th:field="*{price}" id="price" placeholder="Type here">
+                            <label for="price" th:text="${priceError}" style="color: red">error</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea rows="3" cols="50" class="form-control" type="text" th:field="*{description}" id="description" placeholder="Type here"></textarea>
+                            <label for="description" th:text="${descriptionError}" style="color: red">error</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="mail">Mail</label>
+                            <input class="form-control" type="text" th:field="*{mail}" id="mail" placeholder="Type here">
+                            <label for="mail" th:text="${mailError}" style="color: red">error</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input class="form-control" type="text" th:field="*{phone}" id="phone" placeholder="Type here">
+                            <label for="phone" th:text="${phoneError}" style="color: red">error</label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
                             <table>
                                 <tr>
-                                    <td style="vertical-align:middle;"><h2 class="custom-control-label" for="option1">Product</h2></td>
+                                    <td style="vertical-align:middle;"><h4 class="custom-control-label" for="option1">Product</h4></td>
                                     <td style="vertical-align:middle;"><input type="radio" id="option1" name="option1" class="custom-control-input" value="true" th:field="*{product}" checked="checked" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="vertical-align:middle;"><h2 class="custom-control-label" for="option2">Service</h2></td>
+                                    <td style="vertical-align:middle;"><h4 class="custom-control-label" for="option2">Service</h4></td>
                                     <td style="vertical-align:middle;"><input type="radio" id="option2" name="option2" class="custom-control-input" value="false" th:field="*{product}"/></td>
                                 </tr>
                             </table>
@@ -1570,11 +1572,11 @@
                         <div class="custom-control custom-radio custom-control-inline">
                             <table>
                                 <tr>
-                                    <td style="vertical-align:middle;"><h2 class="custom-control-label" for="option3" >Buy</h2></td>
+                                    <td style="vertical-align:middle;"><h4 class="custom-control-label" for="option3" >Buy</h4></td>
                                     <td style="vertical-align:middle;"><input type="radio" id="option3" name="option3"  class="custom-control-input" value="true" th:field="*{buy}" checked="checked"/></td>
                                 </tr>
                                 <tr>
-                                    <td style="vertical-align:middle;"><h2 class="custom-control-label" for="option4">Sale</h2></td>
+                                    <td style="vertical-align:middle;"><h4 class="custom-control-label" for="option4">Sale</h4></td>
                                     <td style="vertical-align:middle;"><input type="radio" id="option4" name="option4" class="custom-control-input" value="false" th:field="*{buy}"/></td>
                                 </tr>
                             </table>

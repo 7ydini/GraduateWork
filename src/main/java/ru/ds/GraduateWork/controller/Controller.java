@@ -3,6 +3,7 @@ package ru.ds.GraduateWork.controller;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.ds.GraduateWork.model.entity.EntityPOJO;
 import ru.ds.GraduateWork.model.entity.product.ProductBuy;
@@ -93,7 +94,26 @@ public class Controller {
 
 
     @PostMapping("/create")
-    public String createAd(@ModelAttribute @Valid EntityPOJO pojo) {
+    public String createAd(@ModelAttribute @Valid EntityPOJO pojo, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("pojo", pojo);
+            if(result.hasFieldErrors("fullName")){
+                model.addAttribute("fullNameError", "Input correct value!");
+            }
+            if(result.hasFieldErrors("price")){
+                model.addAttribute("priceError", "Input correct value!");
+            }
+            if(result.hasFieldErrors("description")){
+                model.addAttribute("descriptionError", "Input correct value!");
+            }
+            if(result.hasFieldErrors("mail")){
+                model.addAttribute("mailError", "Input correct value!");
+            }
+            if(result.hasFieldErrors("phone")){
+                model.addAttribute("phoneError", "Input correct value!");
+            }
+            return "create";
+        }
         if (pojo.isProduct()) {
             if (pojo.isBuy()) {
                 productService.addProductBuy(

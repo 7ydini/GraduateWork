@@ -21,26 +21,26 @@ public class ProductSale {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private long id;
 
-    @NotNull
+    @NotNull(message = "Field can't be empty!")
     @Column(name = "price")
     private String price;
 
-    @NotNull
+    @NotNull(message = "Field can't be empty!")
     @Size(min = 4, max = 64)
     @Column(name = "FULL_NAME")
     private String fullName;
 
-    @NotNull
-    @Size(min = 4, max = 256)
+    @NotNull(message = "Field can't be empty!")
+    @Size(min = 4, max = 256, message = "Size 4 - 256")
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @NotNull
+    @NotNull(message = "Field can't be empty!")
     @Email
     @Column(name = "MAIL")
     private String mail;
 
-    @NotNull
+    @NotNull(message = "Field can't be empty!")
     @Column(name = "PHONE")
     private String phone;
 
