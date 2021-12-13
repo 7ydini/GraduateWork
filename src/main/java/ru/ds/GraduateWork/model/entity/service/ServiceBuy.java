@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "SERVICE_BUY")
@@ -18,18 +21,26 @@ public class ServiceBuy {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private long id;
 
+    @NotNull
     @Column(name = "price")
     private String price;
 
+    @NotNull
+    @Size(min = 4, max = 64)
     @Column(name = "FULL_NAME")
     private String fullName;
 
+    @NotNull
+    @Size(min = 4, max = 256)
     @Column(name = "DESCRIPTION")
     private String description;
 
+    @NotNull
+    @Email
     @Column(name = "MAIL")
     private String mail;
 
+    @NotNull
     @Column(name = "PHONE")
     private String phone;
 

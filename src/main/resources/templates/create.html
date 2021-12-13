@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" class="v2" dir="ltr" lang="ru">
 <head>
+    <style>@import "main.css";</style>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
     <link href="https://www.blogger.com/static/v1/widgets/1529571102-css_bundle_v2.css" rel="stylesheet"
@@ -78,6 +79,61 @@
             padding: 4px 0 4px 16px;
         }
     }</style>
+    <style>
+        form {
+            width:600px;
+            margin:0 auto;
+        }
+
+        label {
+            display:block;
+            margin-top:20px;
+            letter-spacing:2px;
+        }
+
+        input, textarea {
+            width:439px;
+            height:27px;
+            background:#efefef;
+            border-radius:5px;
+            -moz-border-radius:5px;
+            -webkit-border-radius:5px;
+            border:1px solid #dedede;
+            padding:10px;
+            margin-top:3px;
+            font-size:0.9em;
+            color:#3a3a3a;
+        }
+
+        input:focus, textarea:focus {
+            border:1px solid #97d6eb;
+        }
+
+        textarea {
+            height:213px;
+            font-family:Arial, Helvetica, sans-serif;
+            background:url(images/textarea-bg.jpg) right no-repeat #efefef;
+        }
+
+        #submit {
+            background:url(http://tangledindesign.com/demos/contact-form/images/submit.jpg);
+            width:127px;
+            height:38px;
+            text-indent:-9999px;
+            border:none;
+            margin-top:20px;
+            cursor:pointer;
+        }
+        #reset {
+            width:127px;
+            height:38px;
+            margin-top:20px;
+            cursor:pointer;
+        }
+        #submit:hover {
+            opacity:0.9;
+        }
+    </style>
     <style id="profilecss" class="singleton-element">.profile {
         color: #666;
         min-width: 280px;
@@ -1476,43 +1532,55 @@
                     <div class="viewitem-content" tabindex="0">
                     <form action="#" th:action="@{/shop/create}" th:object="${pojo}" method="post">
 
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <span>Select type</span>
-                            <br>
-                            <input type="radio" id="option1" name="option1" class="custom-control-input" value="true" th:field="*{product}" checked="checked" />
-                            <label class="custom-control-label" for="option1">Product</label>
-                            <input type="radio" id="option2" name="option2" class="custom-control-input" value="false" th:field="*{product}"/>
-                            <label class="custom-control-label" for="option2">Service</label>
-                        </div>
-
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <span>Select type</span>
-                            <br>
-                            <input type="radio" id="option3" name="option3" class="custom-control-input" value="true" th:field="*{buy}" checked="checked"/>
-                            <label class="custom-control-label" for="option3">Buy</label>
-                            <input type="radio" id="option4" name="option4" class="custom-control-input" value="false" th:field="*{buy}"/>
-                            <label class="custom-control-label" for="option4">Sale</label>
-                        </div>
-
                         <div class="form-group">
-                            <p>Product/service Name: <br><label>
-                                <input type="text" th:field="*{fullName}" />
-                            </label></p>
-                            <p>Price: <br><label>
-                                <input type="text" th:field="*{price}" />
-                            </label></p>
-                            <p>Description: <br><label>
-                                <textarea rows="4" cols="50" th:field="*{description}"></textarea>
-                            </label></p>
-                            <p>Mail: <br><label>
-                                <input type="email" th:field="*{mail}" />
-                            </label></p>
-                            <p>Phone: <br><label>
-                                <input type="text" th:field="*{phone}" />
-                            </label></p>
+                            <h2>Product/service Name: <br><label>
+                                <input type="text" th:field="*{fullName}" placeholder="Type Here"
+                                       th:class="${#fields.allErrors()}? fieldError" />
+                            </label></h2>
+                            <h2>Price: <br><label>
+                                <input type="text" th:field="*{price}" placeholder="Type Here"
+                                       th:class="${#fields.allErrors()}? fieldError" />
+                            </label></h2>
+                            <h2>Description: <br><label>
+                                <textarea rows="4" cols="50" th:field="*{description}" placeholder="Type Here"
+                                          th:class="${#fields.allErrors()}? fieldError"></textarea>
+                            </label></h2>
+                            <h2>Mail: <br><label>
+                                <input type="email" th:field="*{mail}" placeholder="Type Here"
+                                       th:class="${#fields.allErrors()}? fieldError"/>
+                            </label></h2>
+                            <h2>Phone: <br><label>
+                                <input type="text" th:field="*{phone}" placeholder="Type Here"
+                                       th:class="${#fields.allErrors()}? fieldError" />
+                            </label></h2>
                         </div>
-                        <p><button class="btn btn-primary" type="submit">Submit form</button>
-                            <button class="btn btn-primary" type="reset">Reset</button></p>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <table>
+                                <tr>
+                                    <td style="vertical-align:middle;"><h2 class="custom-control-label" for="option1">Product</h2></td>
+                                    <td style="vertical-align:middle;"><input type="radio" id="option1" name="option1" class="custom-control-input" value="true" th:field="*{product}" checked="checked" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align:middle;"><h2 class="custom-control-label" for="option2">Service</h2></td>
+                                    <td style="vertical-align:middle;"><input type="radio" id="option2" name="option2" class="custom-control-input" value="false" th:field="*{product}"/></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <table>
+                                <tr>
+                                    <td style="vertical-align:middle;"><h2 class="custom-control-label" for="option3" >Buy</h2></td>
+                                    <td style="vertical-align:middle;"><input type="radio" id="option3" name="option3"  class="custom-control-input" value="true" th:field="*{buy}" checked="checked"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align:middle;"><h2 class="custom-control-label" for="option4">Sale</h2></td>
+                                    <td style="vertical-align:middle;"><input type="radio" id="option4" name="option4" class="custom-control-input" value="false" th:field="*{buy}"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <p><input id="submit" name="submit" type="submit" value="Submit">
+                            <input id="reset" name="reset" type="reset" value="Reset"></p>
                     </form>
                         </div>
                     <div class="article-footer">
@@ -1530,7 +1598,7 @@
         <div class="header-bar">
 
 <span class="title">
-  <div style="border: 1px solid #666666; padding: 0 10px; background-color: #ffffff; width: 475px">
+  <div style="border: 1px solid #666666; padding: 0 10px; background-color: #ffffff; width: 510px">
   <a href="/shop" target="_self"><h1 title="Main menu">Main menu</h1></a>
     <a href="/shop/create" style="margin-left: 10%" target="_self"><h1 title="Create new Application">Create new Application</h1></a>
         </div>
@@ -1567,6 +1635,14 @@
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script
+            src="https://code.jquery.com/jquery-1.11.1.min.js"
+            integrity="sha256-VAvG3sHdS5LqTT+5A/aeq/bZGa/Uj04xKxY8KM/w9EE="
+            crossorigin="anonymous"></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 <script>
     (function ($) {
         // Make the pages switch between tabs and menu as needed

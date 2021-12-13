@@ -77,6 +77,61 @@
             padding: 4px 0 4px 16px;
         }
     }</style>
+    <style>
+        form {
+            width:600px;
+            margin:0 auto;
+        }
+
+        label {
+            display:block;
+            margin-top:20px;
+            letter-spacing:2px;
+        }
+
+        input, textarea {
+            width:439px;
+            height:27px;
+            background:#efefef;
+            border-radius:5px;
+            -moz-border-radius:5px;
+            -webkit-border-radius:5px;
+            border:1px solid #dedede;
+            padding:10px;
+            margin-top:3px;
+            font-size:0.9em;
+            color:#3a3a3a;
+        }
+
+        input:focus, textarea:focus {
+            border:1px solid #97d6eb;
+        }
+
+        textarea {
+            height:213px;
+            font-family:Arial, Helvetica, sans-serif;
+            background:url(images/textarea-bg.jpg) right no-repeat #efefef;
+        }
+
+        #submit {
+            background:url(http://tangledindesign.com/demos/contact-form/images/submit.jpg);
+            width:127px;
+            height:38px;
+            text-indent:-9999px;
+            border:none;
+            margin-top:20px;
+            cursor:pointer;
+        }
+        #reset {
+            width:127px;
+            height:38px;
+            margin-top:20px;
+            cursor:pointer;
+        }
+        #submit:hover {
+            opacity:0.9;
+        }
+    </style>
     <style id="profilecss" class="singleton-element">.profile {
         color: #666;
         min-width: 280px;
@@ -1483,23 +1538,19 @@
                                 <a th:text="${application.fullName}">user</a>
                             </h1>
                         </div>
-                        <p><h3>Price:</h3> <span th:text="${application.price}">user</span></p>
-                        <br>
-                        <p><h3>Description:</h3> <span th:text="${application.description}">user</span></p>
-                        <br>
-                        <p><h3>Mail:</h3> <span th:text="${application.mail}">user</span></p>
-                        <br>
-                        <p><h3>Phone:</h3> <span th:text="${application.phone}">user</span></p>
-                        <div class="article-footer">
-                        </div>
+                            <p><h3>Price: </h3> <span th:text="${application.price}">user</span></p>
+                            <br>
+                            <p><h3>Description:</h3> <span th:text="${application.description}">user</span></p>
+                            <br>
+                            <p><h3>Mail:</h3> <span th:text="${application.mail}">user</span></p>
+                            <br>
+                            <p><h3>Phone:</h3> <span th:text="${application.phone}">user</span></p>
                     </div>
                 </div>
                 <div class="article-footer">
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
 
@@ -1508,7 +1559,7 @@
         <div class="header-bar">
 
 <span class="title">
-  <div style="border: 1px solid #666666; padding: 0 10px; background-color: #ffffff; width: 475px">
+    <div style="border: 1px solid #666666; padding: 0 10px; background-color: #ffffff; width: 510px">
   <a href="/shop" target="_self"><h1 title="Main menu">Main menu</h1></a>
     <a href="/shop/create" style="margin-left: 10%" target="_self"><h1 title="Create new Application">Create new Application</h1></a>
         </div>

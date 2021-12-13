@@ -12,6 +12,8 @@ import ru.ds.GraduateWork.model.entity.service.ServiceSale;
 import ru.ds.GraduateWork.service.Impl.ProductServiceImpl;
 import ru.ds.GraduateWork.service.Impl.ServiceServiceImpl;
 
+import javax.validation.Valid;
+
 @Data
 @RequestMapping(value = "/shop")
 @AllArgsConstructor
@@ -54,6 +56,7 @@ public class Controller {
     @GetMapping(value = "/product/buy/{id}")
     public String getProductBuyById(@PathVariable("id") long id, Model model) {
         model.addAttribute("application", productService.getProductBuyById(id));
+        System.out.println(productService.getProductBuyById(id));
         return "getById";
     }
 
@@ -90,7 +93,7 @@ public class Controller {
 
 
     @PostMapping("/create")
-    public String createAd(@ModelAttribute EntityPOJO pojo) {
+    public String createAd(@ModelAttribute @Valid EntityPOJO pojo) {
         if (pojo.isProduct()) {
             if (pojo.isBuy()) {
                 productService.addProductBuy(
