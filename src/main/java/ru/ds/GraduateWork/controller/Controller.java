@@ -55,14 +55,14 @@ public class Controller {
 
     @GetMapping(value = "/product/buy/{id}")
     public String getProductBuyById(@PathVariable("id") long id, Model model) {
-        model.addAttribute("application", productService.getProductBuyById(id));
+        model.addAttribute("app", productService.getProductBuyById(id));
         System.out.println(productService.getProductBuyById(id));
         return "getById";
     }
 
     @GetMapping(value = "/product/sale/{id}")
     public String getProductSaleById(@PathVariable("id") long id, Model model) {
-        model.addAttribute("application", productService.getProductSaleById(id));
+        model.addAttribute("app", productService.getProductSaleById(id));
         return "getById";
     }
 
@@ -81,13 +81,13 @@ public class Controller {
 
     @GetMapping(value = "/service/buy/{id}")
     public String getServiceBuyById(@PathVariable("id") long id, Model model) {
-        model.addAttribute("application", service.getServiceBuyById(id));
+        model.addAttribute("app", service.getServiceBuyById(id));
         return "getById";
     }
 
     @GetMapping(value = "/service/sale/{id}")
     public String getServiceSaleById(@PathVariable("id") long id, Model model) {
-        model.addAttribute("application", service.getServiceSaleById(id));
+        model.addAttribute("app", service.getServiceSaleById(id));
         return "getById";
     }
 
