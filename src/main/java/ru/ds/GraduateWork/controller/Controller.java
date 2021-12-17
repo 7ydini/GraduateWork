@@ -111,6 +111,7 @@ public class Controller {
     public String deletePost(@PathVariable long id, @PathVariable String uuid){
         if (deleteService.search(id, uuid)){
             productService.getProductBuyRepository().delete(productService.getProductBuyById(id));
+            deleteService.delete(id, uuid);
             return "redirect:/shop/product/buy/";
         }
         return "redirect:/shop/product/buy/";
@@ -128,6 +129,7 @@ public class Controller {
     public String deleteSalePost(@PathVariable long id, @PathVariable String uuid){
         if (deleteService.search(id, uuid)){
             productService.getProductSaleRepository().delete(productService.getProductSaleById(id));
+            deleteService.delete(id, uuid);
             return "redirect:/shop/product/sale/";
         }
         return "redirect:/shop/product/sale/";
@@ -149,6 +151,7 @@ public class Controller {
     public String deleteServiceBuyPost(@PathVariable long id, @PathVariable String uuid, Model model){
         if (deleteService.search(id, uuid)){
             service.getServiceBuyRepository().delete(service.getServiceBuyById(id));
+            deleteService.delete(id, uuid);
             return "redirect:/shop/service/buy/";
         }
         return "redirect:/shop/service/buy/";
@@ -166,6 +169,7 @@ public class Controller {
     public String deleteServiceSalePost(@PathVariable long id, @PathVariable String uuid){
         if (deleteService.search(id, uuid)){
             service.getServiceSaleRepository().delete(service.getServiceSaleById(id));
+            deleteService.delete(id, uuid);
             return "redirect:/shop/service/sale/";
         }
         return "redirect:/shop/service/sale/";
