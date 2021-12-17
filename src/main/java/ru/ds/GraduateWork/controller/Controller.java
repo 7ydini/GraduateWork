@@ -120,7 +120,7 @@ public class Controller {
         String uuid = java.util.UUID.randomUUID().toString();
         deleteService.save(id, uuid);
         emailService.sendSimpleEmail(productService.getSaleEmailById(id), "Confirm",
-                "http://localhost:8080/shop/product/buy/delete/" + id + "/" + uuid);
+                "http://localhost:8080/shop/product/sale/delete/" + id + "/" + uuid);
         //model.addAttribute();
         return "delete";
     }
@@ -141,7 +141,7 @@ public class Controller {
         String uuid = java.util.UUID.randomUUID().toString();
         deleteService.save(id, uuid);
         emailService.sendSimpleEmail(service.getBuyEmailById(id), "Confirm",
-                "http://localhost:8080/shop/product/buy/delete/" + id + "/" + uuid);
+                "http://localhost:8080/shop/service/buy/delete/" + id + "/" + uuid);
         //model.addAttribute();
         return "delete";
     }
@@ -158,7 +158,7 @@ public class Controller {
         String uuid = java.util.UUID.randomUUID().toString();
         deleteService.save(id, uuid);
         emailService.sendSimpleEmail(service.getSaleEmailById(id), "Confirm",
-                "http://localhost:8080/shop/product/buy/delete/" + id + "/" + uuid);
+                "http://localhost:8080/shop/service/sale/delete/" + id + "/" + uuid);
         //model.addAttribute();
         return "delete";
     }
