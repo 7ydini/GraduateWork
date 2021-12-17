@@ -48,4 +48,13 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductSale> getAllProductSale() {
         return productSaleRepository.findAll();
     }
+
+    @Override
+    public String getBuyEmailById(long id) {
+        return productBuyRepository.getEmailById(id);
+    }
+    @Override
+    public String getSaleEmailById(long id) {
+        return productSaleRepository.getEmailById(id);
+    }
 }

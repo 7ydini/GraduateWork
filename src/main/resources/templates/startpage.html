@@ -58,29 +58,6 @@
         }
     </style>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link href="https://www.blogger.com/static/v1/widgets/1529571102-css_bundle_v2.css" rel="stylesheet"
-          type="text/css">
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-    <meta content="blogger" name="generator">
-    <link href="http://androidssurrokk.blogspot.com/favicon.ico" rel="icon" type="image/x-icon">
-    <link href="http://androidssurrokk.blogspot.com/2012/06/eclipse_30.html" rel="canonical">
-    <link rel="alternate" type="application/atom+xml" title="Записки разработчика под Android - Atom"
-          href="http://androidssurrokk.blogspot.com/feeds/posts/default">
-    <link rel="alternate" type="application/rss+xml" title="Записки разработчика под Android - RSS"
-          href="http://androidssurrokk.blogspot.com/feeds/posts/default?alt=rss">
-    <link rel="service.post" type="application/atom+xml" title="Записки разработчика под Android - Atom"
-          href="https://www.blogger.com/feeds/4184693225455500017/posts/default">
-
-    <link rel="alternate" type="application/atom+xml" title="Записки разработчика под Android - Atom"
-          href="http://androidssurrokk.blogspot.com/feeds/7172083993969372585/comments/default">
-    <!--[if IE]>
-    <script type="text/javascript" src="https://www.blogger.com/static/v1/jsbin/1155466832-ieretrofit.js"></script>
-    <![endif]-->
-    <meta content="http://androidssurrokk.blogspot.com/2012/06/eclipse_30.html" property="og:url">
-    <meta content="ProductService" property="og:title">
-    <meta content="Eclipse / Intellij IDEA / JDeveloper   Ctrl + Shift + L : показ всех доступных сочетаний    Alt+Shift+R  / Shift + F6  / Ctrl + Alt + R : бы..."
-          property="og:description">
-    <!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
     <title>ProductService</title>
     <meta content="!" name="fragment">
     <meta content="dynamic" name="blogger-template">
@@ -187,34 +164,6 @@
 
     #chromefix {
         -webkit-transform: perspective(1); /* Chrome 12/13/14 flicker fix. */
-    }
-
-    body {
-        background: #ecf3f3;
-    }
-
-    .particle {
-        position: absolute;
-        border-radius: 50%;
-    }
-
-    @for $i from 1 through 30 {
-        @keyframes particle-animation-#{$i} {
-    100% {
-        transform: translate3d((random(90) * 1vw), (random(90) * 1vh), (random(100) * 1px));
-    }
-    }
-
-    .particle:nth-child(#{$i}){
-        animation: particle-animation-#{$i} 60s infinite;
-        $size: random(5) + 5 + px;
-        opacity: random(100)/100;
-        height: $size;
-        width: $size;
-        animation-delay: -$i * .2s;
-        transform: translate3d((random(90) * 1vw), (random(90) * 1vh), (random(100) * 1px));
-        background: hsl(random(360), 70%, 50%);
-    }
     }
 
     body, input, textarea {

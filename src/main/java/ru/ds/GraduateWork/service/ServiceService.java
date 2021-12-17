@@ -20,4 +20,6 @@ public interface ServiceService {
     ServiceSale addServiceSale(ServiceSale serviceSale);
 
     ServiceSale getServiceSaleById(long id);
+    String getBuyEmailById(long id);
+    String getSaleEmailById(long id);
 }

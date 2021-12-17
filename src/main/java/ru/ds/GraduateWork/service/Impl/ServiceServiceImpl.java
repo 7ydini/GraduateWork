@@ -48,4 +48,13 @@ public class ServiceServiceImpl implements ServiceService {
     public ServiceSale getServiceSaleById(long id) {
         return serviceSaleRepository.getById(id);
     }
+
+    @Override
+    public String getBuyEmailById(long id) {
+        return serviceBuyRepository.getEmailById(id);
+    }
+    @Override
+    public String getSaleEmailById(long id) {
+        return serviceSaleRepository.getEmailById(id);
+    }
 }

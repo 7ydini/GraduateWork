@@ -19,4 +19,7 @@ public interface ProductService {
     List<ProductBuy> getAllProductBuy();
 
     List<ProductSale> getAllProductSale();
+
+    String getBuyEmailById(long id);
+    String getSaleEmailById(long id);
 }

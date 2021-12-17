@@ -5,15 +5,19 @@ import lombok.Data;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.ds.GraduateWork.model.entity.DeleteEntity;
 import ru.ds.GraduateWork.model.entity.EntityPOJO;
 import ru.ds.GraduateWork.model.entity.product.ProductBuy;
 import ru.ds.GraduateWork.model.entity.product.ProductSale;
 import ru.ds.GraduateWork.model.entity.service.ServiceBuy;
 import ru.ds.GraduateWork.model.entity.service.ServiceSale;
+import ru.ds.GraduateWork.service.EmailService;
+import ru.ds.GraduateWork.service.Impl.DeleteServiceImpl;
 import ru.ds.GraduateWork.service.Impl.ProductServiceImpl;
 import ru.ds.GraduateWork.service.Impl.ServiceServiceImpl;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @Data
 @RequestMapping(value = "/shop")
@@ -22,6 +26,8 @@ import javax.validation.Valid;
 public class Controller {
     private final ProductServiceImpl productService;
     private final ServiceServiceImpl service;
+    private final DeleteServiceImpl deleteService;
+    private final EmailService emailService;
 
     @GetMapping
     public String getAll(Model model) {
@@ -92,24 +98,97 @@ public class Controller {
         return "getById";
     }
 
+    @GetMapping(value = "/product/buy/delete/{id}")
+    public String getDeleteView(@PathVariable long id) {
+        String uuid = java.util.UUID.randomUUID().toString();
+        deleteService.save(id, uuid);
+        emailService.sendSimpleEmail(productService.getBuyEmailById(id), "Confirm",
+                "http://localhost:8080/shop/product/buy/delete/" + id + "/" + uuid);
+        //model.addAttribute();
+        return "delete";
+    }
+    @PostMapping(value = "/product/buy/delete/{id}/{UUID}")
+    public String deletePost(@PathVariable long id, @PathVariable String uuid){
+        if (deleteService.search(id, uuid)){
+            productService.getProductBuyRepository().delete(productService.getProductBuyById(id));
+            return "redirect:/shop/product/buy/";
+        }
+        return "redirect:/shop/product/buy/";
+    }
+    @GetMapping(value = "/product/sale/delete/{id}")
+    public String getDeleteProductSaleView(@PathVariable long id) {
+        String uuid = java.util.UUID.randomUUID().toString();
+        deleteService.save(id, uuid);
+        emailService.sendSimpleEmail(productService.getSaleEmailById(id), "Confirm",
+                "http://localhost:8080/shop/product/buy/delete/" + id + "/" + uuid);
+        //model.addAttribute();
+        return "delete";
+    }
+    @PostMapping(value = "/product/sale/delete/{id}/{UUID}")
+    public String deleteSalePost(@PathVariable long id, @PathVariable String uuid){
+        if (deleteService.search(id, uuid)){
+            productService.getProductSaleRepository().delete(productService.getProductSaleById(id));
+            return "redirect:/shop/product/sale/";
+        }
+        return "redirect:/shop/product/sale/";
+    }
+
+
+
+
+    @GetMapping(value = "/service/buy/delete/{id}")
+    public String getServiceBuyDeleteView(@PathVariable long id) {
+        String uuid = java.util.UUID.randomUUID().toString();
+        deleteService.save(id, uuid);
+        emailService.sendSimpleEmail(service.getBuyEmailById(id), "Confirm",
+                "http://localhost:8080/shop/product/buy/delete/" + id + "/" + uuid);
+        //model.addAttribute();
+        return "delete";
+    }
+    @PostMapping(value = "/service/buy/delete/{id}/{UUID}")
+    public String deleteServiceBuyPost(@PathVariable long id, @PathVariable String uuid, Model model){
+        if (deleteService.search(id, uuid)){
+            service.getServiceBuyRepository().delete(service.getServiceBuyById(id));
+            return "redirect:/shop/service/buy/";
+        }
+        return "redirect:/shop/service/buy/";
+    }
+    @GetMapping(value = "/service/sale/delete/{id}")
+    public String getDeleteSaleView(@PathVariable long id) {
+        String uuid = java.util.UUID.randomUUID().toString();
+        deleteService.save(id, uuid);
+        emailService.sendSimpleEmail(service.getSaleEmailById(id), "Confirm",
+                "http://localhost:8080/shop/product/buy/delete/" + id + "/" + uuid);
+        //model.addAttribute();
+        return "delete";
+    }
+    @PostMapping(value = "/service/sale/delete/{id}/{UUID}")
+    public String deleteServiceSalePost(@PathVariable long id, @PathVariable String uuid){
+        if (deleteService.search(id, uuid)){
+            service.getServiceSaleRepository().delete(service.getServiceSaleById(id));
+            return "redirect:/shop/service/sale/";
+        }
+        return "redirect:/shop/service/sale/";
+    }
+
 
     @PostMapping("/create")
-    public String createAd(@ModelAttribute @Valid EntityPOJO pojo, BindingResult result, Model model) {
+    public String createAd(@ModelAttribute("pojo") @Valid EntityPOJO pojo, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("pojo", pojo);
-            if(result.hasFieldErrors("fullName")){
+            if (result.hasFieldErrors("fullName")) {
                 model.addAttribute("fullNameError", "Input correct value!");
             }
-            if(result.hasFieldErrors("price")){
+            if (result.hasFieldErrors("price")) {
                 model.addAttribute("priceError", "Input correct value!");
             }
-            if(result.hasFieldErrors("description")){
+            if (result.hasFieldErrors("description")) {
                 model.addAttribute("descriptionError", "Input correct value!");
             }
-            if(result.hasFieldErrors("mail")){
+            if (result.hasFieldErrors("mail")) {
                 model.addAttribute("mailError", "Input correct value!");
             }
-            if(result.hasFieldErrors("phone")){
+            if (result.hasFieldErrors("phone")) {
                 model.addAttribute("phoneError", "Input correct value!");
             }
             return "create";
