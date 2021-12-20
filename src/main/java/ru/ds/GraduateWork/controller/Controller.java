@@ -5,17 +5,20 @@ import lombok.Data;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.ds.GraduateWork.model.entity.email.ApplicationConfirm;
 import ru.ds.GraduateWork.model.entity.EntityPOJO;
 import ru.ds.GraduateWork.model.entity.product.ProductBuy;
 import ru.ds.GraduateWork.model.entity.product.ProductSale;
 import ru.ds.GraduateWork.model.entity.service.ServiceBuy;
 import ru.ds.GraduateWork.model.entity.service.ServiceSale;
 import ru.ds.GraduateWork.service.EmailService;
+import ru.ds.GraduateWork.service.Impl.ApplicationConfirmServiceImpl;
 import ru.ds.GraduateWork.service.Impl.DeleteServiceImpl;
 import ru.ds.GraduateWork.service.Impl.ProductServiceImpl;
 import ru.ds.GraduateWork.service.Impl.ServiceServiceImpl;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @Data
 @RequestMapping(value = "/shop")
@@ -26,6 +29,7 @@ public class Controller {
     private final ServiceServiceImpl service;
     private final DeleteServiceImpl deleteService;
     private final EmailService emailService;
+    private final ApplicationConfirmServiceImpl applicationConfirmService;
 
     @GetMapping
     public String getAll(Model model) {
@@ -199,17 +203,46 @@ public class Controller {
             }
             return "create";
         }
+        String uuid = UUID.randomUUID().toString();
+        applicationConfirmService.save(pojo, uuid);
+        emailService.sendSimpleEmail(pojo.getMail(), "Confirm create application",
+                "http://localhost:8080/shop/create/" + uuid);
+        return "redirect:/shop";
+    }
+
+    @GetMapping(value="/create/{UUID}")
+    public String ConfirmCreate(@PathVariable("UUID") String uuid){
+        ApplicationConfirm pojo = applicationConfirmService.getRepository().getByUUID(uuid);
         if (pojo.isProduct()) {
             if (pojo.isBuy()) {
-                productService.addProductBuy(
-                        new ProductBuy(pojo.getFullName(), pojo.getPrice(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
-            } else productService.addProductSale(
-                    new ProductSale(pojo.getFullName(), pojo.getPrice(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
+                productService.addProductBuy(new ProductBuy(
+                        pojo.getFullName(),
+                        pojo.getPrice(),
+                        pojo.getDescription(),
+                        pojo.getMail(),
+                        pojo.getPhone()));
+
+            } else productService.addProductSale(new ProductSale(
+                    pojo.getFullName(),
+                    pojo.getPrice(),
+                    pojo.getDescription(),
+                    pojo.getMail(),
+                    pojo.getPhone()));
+
         } else if (pojo.isBuy()) {
-            service.addServiceBuy(
-                    new ServiceBuy(pojo.getFullName(), pojo.getPrice(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
-        } else service.addServiceSale(
-                new ServiceSale(pojo.getFullName(), pojo.getPrice(), pojo.getDescription(), pojo.getMail(), pojo.getPhone()));
+            service.addServiceBuy(new ServiceBuy(
+                    pojo.getFullName(),
+                    pojo.getPrice(),
+                    pojo.getDescription(),
+                    pojo.getMail(),
+                    pojo.getPhone()));
+
+        } else service.addServiceSale(new ServiceSale(
+                pojo.getFullName(),
+                pojo.getPrice(),
+                pojo.getDescription(),
+                pojo.getMail(),
+                pojo.getPhone()));
         return "redirect:/shop";
     }
 

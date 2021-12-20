@@ -3,8 +3,8 @@ package ru.ds.GraduateWork.service.Impl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
-import ru.ds.GraduateWork.model.entity.DeleteEntity;
-import ru.ds.GraduateWork.repository.DeleteRepository;
+import ru.ds.GraduateWork.model.entity.email.DeleteEntity;
+import ru.ds.GraduateWork.repository.email.DeleteRepository;
 import ru.ds.GraduateWork.service.DeleteService;
 
 import java.util.Objects;

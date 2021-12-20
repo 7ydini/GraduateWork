@@ -1,4 +1,4 @@
-package ru.ds.GraduateWork.model.entity;
+package ru.ds.GraduateWork.model.entity.email;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
