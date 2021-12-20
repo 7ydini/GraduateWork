@@ -1545,6 +1545,10 @@
                             <p><h3>Mail:</h3> <span th:text="${app.mail}">user</span></p>
                             <br>
                             <p><h3>Phone:</h3> <span th:text="${app.phone}">user</span></p>
+                        <button th:href="@{./{id}/delete(id = ${app.id})}" name="delete" type="button" value="Delete">Delete</button>
+                        <form action="#" th:action="@{./{id}/delete(id =${app.id})}" method="post">
+                            <input id="submit" name="submit" type="submit">
+                        </form>
                     </div>
                 </div>
                 <div class="article-footer">

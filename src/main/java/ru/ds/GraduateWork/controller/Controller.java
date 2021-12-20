@@ -5,7 +5,6 @@ import lombok.Data;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.ds.GraduateWork.model.entity.DeleteEntity;
 import ru.ds.GraduateWork.model.entity.EntityPOJO;
 import ru.ds.GraduateWork.model.entity.product.ProductBuy;
 import ru.ds.GraduateWork.model.entity.product.ProductSale;
@@ -17,7 +16,6 @@ import ru.ds.GraduateWork.service.Impl.ProductServiceImpl;
 import ru.ds.GraduateWork.service.Impl.ServiceServiceImpl;
 
 import javax.validation.Valid;
-import java.util.UUID;
 
 @Data
 @RequestMapping(value = "/shop")
@@ -98,36 +96,39 @@ public class Controller {
         return "getById";
     }
 
-    @GetMapping(value = "/product/buy/delete/{id}")
+    @PostMapping(value = "/product/buy/{id}/delete")
     public String getDeleteView(@PathVariable long id) {
         String uuid = java.util.UUID.randomUUID().toString();
         deleteService.save(id, uuid);
         emailService.sendSimpleEmail(productService.getBuyEmailById(id), "Confirm",
-                "http://localhost:8080/shop/product/buy/delete/" + id + "/" + uuid);
+                "http://localhost:8080/shop/product/buy/" + id + "/delete/" + uuid);
         //model.addAttribute();
-        return "delete";
+        return "redirect:/shop/product/buy/";
     }
-    @PostMapping(value = "/product/buy/delete/{id}/{UUID}")
-    public String deletePost(@PathVariable long id, @PathVariable String uuid){
-        if (deleteService.search(id, uuid)){
+
+    @GetMapping(value = "/product/buy/{id}/delete/{UUID}")
+    public String deletePost(@PathVariable long id, @PathVariable("UUID") String uuid) {
+        if (deleteService.search(id, uuid)) {
             productService.getProductBuyRepository().delete(productService.getProductBuyById(id));
             deleteService.delete(id, uuid);
             return "redirect:/shop/product/buy/";
         }
         return "redirect:/shop/product/buy/";
     }
-    @GetMapping(value = "/product/sale/delete/{id}")
+
+    @PostMapping(value = "/product/sale/{id}/delete")
     public String getDeleteProductSaleView(@PathVariable long id) {
         String uuid = java.util.UUID.randomUUID().toString();
         deleteService.save(id, uuid);
         emailService.sendSimpleEmail(productService.getSaleEmailById(id), "Confirm",
-                "http://localhost:8080/shop/product/sale/delete/" + id + "/" + uuid);
+                "http://localhost:8080/shop/product/sale/" + id + "/delete/" + uuid);
         //model.addAttribute();
-        return "delete";
+        return "redirect:/shop/product/sale/";
     }
-    @PostMapping(value = "/product/sale/delete/{id}/{UUID}")
-    public String deleteSalePost(@PathVariable long id, @PathVariable String uuid){
-        if (deleteService.search(id, uuid)){
+
+    @GetMapping(value = "/product/sale/{id}/delete/{UUID}")
+    public String deleteSalePost(@PathVariable long id, @PathVariable("UUID") String uuid) {
+        if (deleteService.search(id, uuid)) {
             productService.getProductSaleRepository().delete(productService.getProductSaleById(id));
             deleteService.delete(id, uuid);
             return "redirect:/shop/product/sale/";
@@ -136,38 +137,39 @@ public class Controller {
     }
 
 
-
-
-    @GetMapping(value = "/service/buy/delete/{id}")
+    @PostMapping(value = "/service/buy/{id}/delete")
     public String getServiceBuyDeleteView(@PathVariable long id) {
         String uuid = java.util.UUID.randomUUID().toString();
         deleteService.save(id, uuid);
         emailService.sendSimpleEmail(service.getBuyEmailById(id), "Confirm",
-                "http://localhost:8080/shop/service/buy/delete/" + id + "/" + uuid);
+                "http://localhost:8080/shop/service/buy/" + id + "/delete/" + uuid);
         //model.addAttribute();
-        return "delete";
+        return "redirect:/shop/service/buy/";
     }
-    @PostMapping(value = "/service/buy/delete/{id}/{UUID}")
-    public String deleteServiceBuyPost(@PathVariable long id, @PathVariable String uuid, Model model){
-        if (deleteService.search(id, uuid)){
+
+    @GetMapping(value = "/service/buy/{id}/delete/{UUID}")
+    public String deleteServiceBuyPost(@PathVariable long id, @PathVariable("UUID") String uuid) {
+        if (deleteService.search(id, uuid)) {
             service.getServiceBuyRepository().delete(service.getServiceBuyById(id));
             deleteService.delete(id, uuid);
             return "redirect:/shop/service/buy/";
         }
         return "redirect:/shop/service/buy/";
     }
-    @GetMapping(value = "/service/sale/delete/{id}")
+
+    @PostMapping(value = "/service/sale/{id}/delete")
     public String getDeleteSaleView(@PathVariable long id) {
         String uuid = java.util.UUID.randomUUID().toString();
         deleteService.save(id, uuid);
         emailService.sendSimpleEmail(service.getSaleEmailById(id), "Confirm",
-                "http://localhost:8080/shop/service/sale/delete/" + id + "/" + uuid);
+                "http://localhost:8080/shop/service/sale/" + id + "/delete/" + uuid);
         //model.addAttribute();
-        return "delete";
+        return "redirect:/shop/service/sale/";
     }
-    @PostMapping(value = "/service/sale/delete/{id}/{UUID}")
-    public String deleteServiceSalePost(@PathVariable long id, @PathVariable String uuid){
-        if (deleteService.search(id, uuid)){
+
+    @GetMapping(value = "/service/sale/{id}/delete/{UUID}")
+    public String deleteServiceSalePost(@PathVariable long id, @PathVariable("UUID") String uuid) {
+        if (deleteService.search(id, uuid)) {
             service.getServiceSaleRepository().delete(service.getServiceSaleById(id));
             deleteService.delete(id, uuid);
             return "redirect:/shop/service/sale/";

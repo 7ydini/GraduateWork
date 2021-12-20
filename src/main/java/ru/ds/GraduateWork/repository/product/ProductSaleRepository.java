@@ -8,6 +8,6 @@ import ru.ds.GraduateWork.model.entity.product.ProductSale;
 
 @Repository
 public interface ProductSaleRepository extends JpaRepository<ProductSale, Long> {
-    @Query("select ProductSale .mail from ProductSale where id=?1")
+    @Query("select productSale.mail from ProductSale productSale where productSale.id=?1")
     String getEmailById(@Param("id") long id);
 }

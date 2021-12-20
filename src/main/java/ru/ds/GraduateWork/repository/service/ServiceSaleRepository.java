@@ -8,6 +8,6 @@ import ru.ds.GraduateWork.model.entity.service.ServiceSale;
 
 @Repository
 public interface ServiceSaleRepository extends JpaRepository<ServiceSale, Long> {
-    @Query("select ServiceSale.mail from ServiceSale where id=?1")
+    @Query("select serviceSale.mail from ServiceSale serviceSale where serviceSale.id=?1")
     String getEmailById(@Param("id") long id);
 }
