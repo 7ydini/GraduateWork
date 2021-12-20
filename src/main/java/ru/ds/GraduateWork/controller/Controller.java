@@ -101,13 +101,14 @@ public class Controller {
     }
 
     @PostMapping(value = "/product/buy/{id}/delete")
-    public String getDeleteView(@PathVariable long id) {
+    public String getDeleteView(@PathVariable long id, Model model) {
         String uuid = java.util.UUID.randomUUID().toString();
         deleteService.save(id, uuid);
         emailService.sendSimpleEmail(productService.getBuyEmailById(id), "Confirm",
                 "http://localhost:8080/shop/product/buy/" + id + "/delete/" + uuid);
-        //model.addAttribute();
-        return "redirect:/shop/product/buy/";
+        model.addAttribute("app", productService.getProductBuyById(id));
+        model.addAttribute("confirm", "Check your email!");
+        return "getById";
     }
 
     @GetMapping(value = "/product/buy/{id}/delete/{UUID}")
@@ -121,13 +122,14 @@ public class Controller {
     }
 
     @PostMapping(value = "/product/sale/{id}/delete")
-    public String getDeleteProductSaleView(@PathVariable long id) {
+    public String getDeleteProductSaleView(@PathVariable long id, Model model) {
         String uuid = java.util.UUID.randomUUID().toString();
         deleteService.save(id, uuid);
         emailService.sendSimpleEmail(productService.getSaleEmailById(id), "Confirm",
                 "http://localhost:8080/shop/product/sale/" + id + "/delete/" + uuid);
-        //model.addAttribute();
-        return "redirect:/shop/product/sale/";
+        model.addAttribute("confirm", "Check your email!");
+        model.addAttribute("app", productService.getProductSaleById(id));
+        return "getById";
     }
 
     @GetMapping(value = "/product/sale/{id}/delete/{UUID}")
@@ -142,13 +144,14 @@ public class Controller {
 
 
     @PostMapping(value = "/service/buy/{id}/delete")
-    public String getServiceBuyDeleteView(@PathVariable long id) {
+    public String getServiceBuyDeleteView(@PathVariable long id, Model model) {
         String uuid = java.util.UUID.randomUUID().toString();
         deleteService.save(id, uuid);
         emailService.sendSimpleEmail(service.getBuyEmailById(id), "Confirm",
                 "http://localhost:8080/shop/service/buy/" + id + "/delete/" + uuid);
-        //model.addAttribute();
-        return "redirect:/shop/service/buy/";
+        model.addAttribute("app", service.getServiceBuyById(id));
+        model.addAttribute("confirm", "Check your email!");
+        return "getById";
     }
 
     @GetMapping(value = "/service/buy/{id}/delete/{UUID}")
@@ -162,13 +165,14 @@ public class Controller {
     }
 
     @PostMapping(value = "/service/sale/{id}/delete")
-    public String getDeleteSaleView(@PathVariable long id) {
+    public String getDeleteSaleView(@PathVariable long id, Model model) {
         String uuid = java.util.UUID.randomUUID().toString();
         deleteService.save(id, uuid);
         emailService.sendSimpleEmail(service.getSaleEmailById(id), "Confirm",
                 "http://localhost:8080/shop/service/sale/" + id + "/delete/" + uuid);
-        //model.addAttribute();
-        return "redirect:/shop/service/sale/";
+        model.addAttribute("app", service.getServiceSaleById(id));
+        model.addAttribute("confirm", "Check your email!");
+        return "getById";
     }
 
     @GetMapping(value = "/service/sale/{id}/delete/{UUID}")
@@ -203,11 +207,12 @@ public class Controller {
             }
             return "create";
         }
+        model.addAttribute("confirm", "Check your email!");
         String uuid = UUID.randomUUID().toString();
         applicationConfirmService.save(pojo, uuid);
         emailService.sendSimpleEmail(pojo.getMail(), "Confirm create application",
                 "http://localhost:8080/shop/create/" + uuid);
-        return "redirect:/shop";
+        return "create";
     }
 
     @GetMapping(value="/create/{UUID}")
@@ -243,6 +248,7 @@ public class Controller {
                 pojo.getDescription(),
                 pojo.getMail(),
                 pojo.getPhone()));
+        applicationConfirmService.delete(pojo.getId());
         return "redirect:/shop";
     }
 

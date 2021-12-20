@@ -1546,6 +1546,7 @@
                             <br>
                             <p><h3>Phone:</h3> <span th:text="${app.phone}">user</span></p>
                         <form action="#" th:action="@{./{id}/delete(id =${app.id})}" method="post">
+                            <label th:text="${confirm}" style="color: green">error</label>
                             <input name="delete" type="submit" value="Delete">
                         </form>
                     </div>
