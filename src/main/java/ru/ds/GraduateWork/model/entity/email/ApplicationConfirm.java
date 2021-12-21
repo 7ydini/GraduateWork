@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 @Table(name = "application_confirm")
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = "seq", sequenceName = "graduate_seq")
+@SequenceGenerator(name = "seq", sequenceName = "application_confirm_id_seq")
 public class ApplicationConfirm {
     public ApplicationConfirm(String price, String fullName, String description, String mail, String phone, boolean product, boolean buy, String uuid) {
         this.price = price;

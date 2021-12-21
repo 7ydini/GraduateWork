@@ -5,8 +5,8 @@ import lombok.Data;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.ds.GraduateWork.model.entity.email.ApplicationConfirm;
 import ru.ds.GraduateWork.model.entity.EntityPOJO;
+import ru.ds.GraduateWork.model.entity.email.ApplicationConfirm;
 import ru.ds.GraduateWork.model.entity.product.ProductBuy;
 import ru.ds.GraduateWork.model.entity.product.ProductSale;
 import ru.ds.GraduateWork.model.entity.service.ServiceBuy;
@@ -37,19 +37,10 @@ public class Controller {
         return "startpage";
     }
 
-    @GetMapping("/create")
-    public String createView(Model model) {
-        model.addAttribute("pojo", new EntityPOJO());
-        return "create";
-    }
 
-    @GetMapping("/test")
-    public String createView() {
-        return "applications";
-    }
-
-
-    //Product
+    /**
+     * Products Applications
+     **/
     @GetMapping(value = "/product/buy/")
     public String getAllProductBuy(Model model) {
         model.addAttribute("list", productService.getAllProductBuy());
@@ -75,7 +66,9 @@ public class Controller {
         return "getById";
     }
 
-    //Service
+    /**
+     * Services Applications
+     **/
     @GetMapping(value = "/service/buy/")
     public String getAllServiceBuy(Model model) {
         model.addAttribute("list", service.getAllServiceBuy());
@@ -100,6 +93,9 @@ public class Controller {
         return "getById";
     }
 
+    /**
+     * Delete Application
+     **/
     @PostMapping(value = "/product/buy/{id}/delete")
     public String getDeleteView(@PathVariable long id, Model model) {
         String uuid = java.util.UUID.randomUUID().toString();
@@ -184,7 +180,17 @@ public class Controller {
         }
         return "redirect:/shop/service/sale/";
     }
+    //
 
+
+    /**
+     * Create new Application
+     **/
+    @GetMapping("/create")
+    public String createView(Model model) {
+        model.addAttribute("pojo", new EntityPOJO());
+        return "create";
+    }
 
     @PostMapping("/create")
     public String createAd(@ModelAttribute("pojo") @Valid EntityPOJO pojo, BindingResult result, Model model) {
@@ -215,8 +221,8 @@ public class Controller {
         return "create";
     }
 
-    @GetMapping(value="/create/{UUID}")
-    public String ConfirmCreate(@PathVariable("UUID") String uuid){
+    @GetMapping(value = "/create/{UUID}")
+    public String ConfirmCreate(@PathVariable("UUID") String uuid) {
         ApplicationConfirm pojo = applicationConfirmService.getRepository().getByUUID(uuid);
         if (pojo.isProduct()) {
             if (pojo.isBuy()) {
@@ -252,7 +258,9 @@ public class Controller {
         return "redirect:/shop";
     }
 
-    //redirects
+    /**
+     * Redirects
+     **/
     @PostMapping(value = "/product/buy/btn")
     public String ProductBuyBtn() {
         return "redirect:/shop/product/buy";
@@ -291,6 +299,12 @@ public class Controller {
     @GetMapping(value = "/service/buy")
     public String getAllServiceBuyRed() {
         return "redirect:/shop/service/buy/";
+    }
+
+    //Test
+    @GetMapping(value = "/test")
+    public String test() {
+        return "test";
     }
 
 }

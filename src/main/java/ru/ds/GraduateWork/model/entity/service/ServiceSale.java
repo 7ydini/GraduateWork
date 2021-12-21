@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 @Table(name = "SERVICE_SALE")
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = "seq", sequenceName = "graduate_seq")
+@SequenceGenerator(name = "seq", sequenceName = "SERVICE_SELL_id_seq")
 public class ServiceSale {
     @Id
     @Column(name = "ID")
