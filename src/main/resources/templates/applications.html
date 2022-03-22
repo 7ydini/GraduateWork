@@ -1524,10 +1524,12 @@
 <body class="variant-sidebar sidebar notouch viewitem-open">
 <div class="viewitem-panel">
     <div class="viewitem-wrap">
+
         <div class="viewitem-background"></div>
         <div class="viewitem-header"></div>
         <div class="viewitem-inner">
             <div class="article-content entry-content" itemprop="articleBody">
+
                 <div th:each="product : ${list}">
                     <div class="viewitem-content" tabindex="0">
                         <div class="article hentry  " itemscope="" itemtype="http://schema.org/BlogPosting">
@@ -1538,13 +1540,45 @@
                                     </div>
                                 <h1 class="title entry-title" itemprop="name">
                                     <a th:href="@{./{id}(id=${product.id})}"
-                                       th:text="${product.fullName}">user</a>
+                                       th:text="${product.fullName}">Название заявки</a>
                                 </h1>
                             </div>
                             <div class="article-content entry-content" itemprop="articleBody">
-                                <p>Price: <span style="color: #222222" th:text="${product.price}">user</span></h2>
+                                <p>Price: <span style="color: #222222" th:text="${product.price}">Цена товара/услуги</span></h2>
                                 </p>
-                                <span style="color: #222222" th:text="${product.description}">user</span></h2>
+                                <span style="color: #222222" th:text="${product.description}">Описание объявления</span></h2>
+                                <br>
+                                <br>
+                                <div class="line"></div>
+                                <div class="nav-arrows">
+                                    <a href="#"><span class="glyphicon glyphicon-menu-left"
+                                                      aria-hidden="true"></span></a>
+                                    <a href="#"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="article-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div th:each="product : ${list}">
+                    <div class="viewitem-content" tabindex="0">
+                        <div class="article hentry  " itemscope="" itemtype="http://schema.org/BlogPosting">
+                            <div class="article-header">
+                                <div class="tail">
+                                    <div class="left ribbon-piece"></div>
+                                    <div class="right ribbon-piece"></div>
+                                </div>
+                                <h1 class="title entry-title" itemprop="name">
+                                    <a th:href="@{./{id}(id=${product.id})}"
+                                       th:text="${product.fullName}">Название заявки</a>
+                                </h1>
+                            </div>
+                            <div class="article-content entry-content" itemprop="articleBody">
+                                <p>Price: <span style="color: #222222" th:text="${product.price}">Цена товара/услуги</span></h2>
+                                </p>
+                                <span style="color: #222222" th:text="${product.description}">Описание объявления</span></h2>
                                 <br>
                                 <br>
                                 <div class="line"></div>
@@ -1570,44 +1604,59 @@
 </div>
 
 <div id="header-container">
+
     <div id="header" class="header">
         <div class="header-bar">
-
 <span class="title">
-    <div style="border: 1px solid #666666; padding: 0 10px; background-color: #ffffff; width: 510px">
-  <a href="/shop" target="_self"><h1 title="Main menu">Main menu</h1></a>
-    <a href="/shop/create" style="margin-left: 10%" target="_self"><h1 title="Create new Application">Create new Application</h1></a>
-        </div>
+
+    <div style="border: 1px solid #666666; padding: 0 10px; background-color: #ffffff; width: 545px">
+    <a href="/shop" target="_self"><h1 title="Main menu">Главное меню</h1></a>
+    <a href="/shop/create" style="margin-left: 10%" target="_self"><h1 title="Создать объявление">Создать объявление</h1></a>
+
+    </div>
 </span>
+
+
         </div>
         <div class="header-drawer sticky open">
             <div id="views" class="tabs">
-                <span class="menu-heading">Product<span class="indicator"></span></span>
+                <span class="menu-heading">Товары<span class="indicator"></span></span>
                 <ul>
                     <li class="Classic"><span class="menu-background"></span>
                         <a class="menu-item" th:href="@{/shop/product/buy}" target="_self"
-                           data-view-name="classic">Buy</a>
+                           data-view-name="classic">Предложения о покупке</a>
                     </li>
                     <li class="Flipcard"><span class="menu-background"></span>
-                        <a class="menu-item" th:href="@{/shop/product/sale}" target="_self" data-view-name="flipcard">Sale</a>
+                        <a class="menu-item" th:href="@{/shop/product/sale}" target="_self"
+                           data-view-name="flipcard">Предложения о прождаже</a>
                     </li>
                 </ul>
             </div>
-            <div id="views2" class="tabs">
-                <span class="menu-heading">Service<span class="indicator"></span></span>
+            <div id="views2" style="" class="tabs">
+                <span class="menu-heading">Услуги<span class="indicator"></span></span>
                 <ul>
                     <li class="Classic"><span class="menu-background"></span>
                         <a class="menu-item" th:href="@{/shop/service/buy}" target="_self"
-                           data-view-name="classic">Buy</a>
+                           data-view-name="classic">Предложения о покупке</a>
                     </li>
                     <li class="Flipcard"><span class="menu-background"></span>
-                        <a class="menu-item" th:href="@{/shop/service/sale}" target="_self" data-view-name="flipcard">Sale</a>
+                        <a class="menu-item" th:href="@{/shop/service/sale}" target="_self"
+                           data-view-name="flipcard">Предложения о прождаже</a>
                     </li>
                 </ul>
+            </div>
+            <div><form>
+                <p>
+                <input style="border: 1px solid #666666; padding: 0 10px; width: 300px; background-color: #ffffff; height: 37px;" type="search" name="q" placeholder="Поиск объявления">
+<!--                <input style="border: 1px solid #666666; padding: 0 10px; background-color: #ffffff;" type="submit" value="Найти объявления">-->
+
+                </p>
+            </form>
             </div>
         </div>
     </div>
 </div>
+
 <script>
     (function ($) {
         // Make the pages switch between tabs and menu as needed

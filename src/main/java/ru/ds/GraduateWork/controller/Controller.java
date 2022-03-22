@@ -56,7 +56,6 @@ public class Controller {
     @GetMapping(value = "/product/buy/{id}")
     public String getProductBuyById(@PathVariable("id") long id, Model model) {
         model.addAttribute("app", productService.getProductBuyById(id));
-        System.out.println(productService.getProductBuyById(id));
         return "getById";
     }
 
