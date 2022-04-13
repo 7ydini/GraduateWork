@@ -1607,20 +1607,18 @@
 
     <div id="header" class="header">
         <div class="header-bar">
-<span class="title">
-
-    <div style="border: 1px solid #666666; padding: 0 10px; background-color: #ffffff; width: 545px">
-    <a href="/shop" target="_self"><h1 title="Main menu">Главное меню</h1></a>
-    <a href="/shop/create" style="margin-left: 10%" target="_self"><h1 title="Создать объявление">Создать объявление</h1></a>
-
-    </div>
+<span class="title" style="height: 1rem;">
+<div style="position:absolute; top:3.1rem; left:15rem">
+    <a href="/shop" style=" color: rgba(255, 255, 255, 1) !important; font-size: 15px;" target="_self">Главное меню</a>
+    <a href="/shop" style=" color: rgba(255, 255, 255, 1) !important; font-size: 15px; margin-left:1rem;" target="_self">Создать объявление</a>
+</div>
 </span>
 
 
         </div>
         <div class="header-drawer sticky open">
             <div id="views" class="tabs">
-                <span class="menu-heading">Товары<span class="indicator"></span></span>
+                <span style="color: rgba(255, 255, 255, 1) !important; text-align:center;" class="menu-heading">Товары<span class="indicator"></span></span>
                 <ul>
                     <li class="Classic"><span class="menu-background"></span>
                         <a class="menu-item" th:href="@{/shop/product/buy}" target="_self"
@@ -1633,7 +1631,7 @@
                 </ul>
             </div>
             <div id="views2" style="" class="tabs">
-                <span class="menu-heading">Услуги<span class="indicator"></span></span>
+                <span style="color: rgba(255, 255, 255, 1) !important;" class="menu-heading">Услуги<span class="indicator"></span></span>
                 <ul>
                     <li class="Classic"><span class="menu-background"></span>
                         <a class="menu-item" th:href="@{/shop/service/buy}" target="_self"
@@ -1647,7 +1645,7 @@
             </div>
             <div><form>
                 <p>
-                <input style="border: 1px solid #666666; padding: 0 10px; width: 300px; background-color: #ffffff; height: 37px;" type="search" name="q" placeholder="Поиск объявления">
+                <input style="border: 1px solid #666666; padding: 0 10px; width: 200px; background-color: #ffffff; height: 37px;" type="search" name="q" placeholder="Поиск объявления">
 <!--                <input style="border: 1px solid #666666; padding: 0 10px; background-color: #ffffff;" type="submit" value="Найти объявления">-->
 
                 </p>
